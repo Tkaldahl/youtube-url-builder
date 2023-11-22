@@ -1,0 +1,7 @@
+<div>Hello World</div>
+<input [(ngModel)]="query" (ngModelChange)="search()">
+<ul>
+    <li *ngFor="let video of videos">
+        <a [href]="'https://www.youtube.com/watch?v=' + video.id?.videoId" target="_blank">{{ video.snippet?.title }}</a>
+    </li>
+<ul>
