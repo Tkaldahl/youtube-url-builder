@@ -1,5 +1,5 @@
 {
-  "name": "youtube-video-selector",
+  "name": "youtube-url-builder",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:youtube-video-selector": "node dist/youtube-video-selector/server/server.mjs"
+    "serve:ssr:youtube-url-builder": "node dist/youtube-url-builder/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +21,7 @@
     "@angular/platform-server": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@angular/ssr": "^17.0.3",
+    "@angular/youtube-player": "^17.0.1",
     "axios": "^1.6.2",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
