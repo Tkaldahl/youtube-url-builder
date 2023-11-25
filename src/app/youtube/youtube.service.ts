@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export class YoutubeService {
   async searchVideos(query: string) {
-    console.log(query);
     const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         part: 'snippet',

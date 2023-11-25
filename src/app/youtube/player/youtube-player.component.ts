@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, Renderer2, Signal, ViewChild, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
@@ -10,11 +10,18 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     imports: [FormsModule, YouTubePlayerModule],
 })
 export class YoutubePlayerComponent implements AfterViewInit {
-    @Input() videoId: string = '';
+    @Input() videoId!: Signal<string>;
     @ViewChild('ytContainer') ytContainer!: ElementRef;
-    @ViewChild('ytPlayer') ytPlayer!: ElementRef; // Add this line
+    @ViewChild('ytPlayerElement') ytPlayerElement!: ElementRef;
+    ytPlayer: YT.Player | undefined
 
-    constructor(private renderer: Renderer2) {}
+
+    constructor(private renderer: Renderer2) {
+        effect(() => {
+            this.ytPlayer?.cueVideoById(this.videoId());
+            this.playVideo();
+        });
+    }
 
     ngAfterViewInit(): void {
         // Load the IFrame Player API code asynchronously.
@@ -23,14 +30,20 @@ export class YoutubePlayerComponent implements AfterViewInit {
         this.renderer.appendChild(this.ytContainer.nativeElement, youtubePlayerElement);
 
         // Replace the 'ytplayer' element with an <iframe> and YouTube player after the API code downloads.
-        this.onYouTubePlayerAPIReady();
+        this.ytPlayer = this.onYouTubePlayerAPIReady();
     }
 
-    onYouTubePlayerAPIReady() {
-        new YT.Player(this.ytPlayer?.nativeElement, {
+    onYouTubePlayerAPIReady(): YT.Player {
+        return new YT.Player(this.ytPlayerElement?.nativeElement, {
             height: '360',
             width: '640',
-            videoId: 'M7lc1UVf-VE'
+            videoId: ""
         });
+    }
+
+    private playVideo(): void {
+        setTimeout(() => {
+            this.ytPlayer?.playVideo();
+        }, 250)
     }
 }

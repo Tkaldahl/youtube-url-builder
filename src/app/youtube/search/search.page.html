@@ -2,7 +2,6 @@
 <input [(ngModel)]="query" (ngModelChange)="search()">
 <ul>
     <li *ngFor="let video of videos">
-        <!-- <a [href]="" target="_blank">{{ video.snippet?.title }}</a> -->
         <a (click)="loadVideo(video.id?.videoId)" [href]="" target="_blank">{{ video.snippet?.title }}</a>
     </li>
 <ul>
