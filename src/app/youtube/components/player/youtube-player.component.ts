@@ -19,7 +19,14 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     ytApiState: WritableSignal<YoutubeApiState> = signal(YoutubeApiState.Loading);
     ytPlayer: YT.Player | null = null;
     apiStateChecker: NodeJS.Timeout | undefined;
-    playlistSelection: WritableSignal<YTVideoMetadata> = signal({videoId: undefined, timeStamp: undefined, title: undefined, tags: undefined});
+    playlistSelection: WritableSignal<YTVideoMetadata> = signal({
+        videoId: undefined,
+        timeStamp: undefined,
+        title: undefined,
+        tags: undefined,
+        channelTitle: undefined,
+        published: undefined
+    });
 
 
     constructor(private renderer: Renderer2, private youtubeService: YoutubeService) {

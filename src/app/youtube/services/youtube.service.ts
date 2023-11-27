@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export class YoutubeService {
-  async searchVideos(query: string): Promise<any> {
+  async searchVideos(query: string): Promise<YTVideoMetadata[]> {
     const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         part: 'snippet',
@@ -11,7 +11,11 @@ export class YoutubeService {
       },
     });
 
-    return response.data.items;
+    return response.data.items.map((item: any) => {
+      let snippet = item.snippet;
+      snippet.id = item.id.videoId;
+      return this.snippetToYTMetadata(snippet);
+    });
   }
 
   async getYTVideoMetadata(videoId: string): Promise<YTVideoMetadata> {
@@ -23,15 +27,19 @@ export class YoutubeService {
       },
     });
 
-    const videoData = response.data?.items?.[0];
-    const metadata: YTVideoMetadata = {
-      videoId: videoData.id,
-      timeStamp: undefined,
-      title: videoData.snippet.title,
-      tags: videoData.snippet.tags,
-    };
+    const videoSnippet = response.data?.items?.[0];
+    return this.snippetToYTMetadata(videoSnippet);
+  }
 
-    return metadata;
+  snippetToYTMetadata(snippet: any): YTVideoMetadata {
+    return {
+      videoId: snippet.id,
+      timeStamp: undefined,
+      title: snippet.title,
+      tags: snippet.tags,
+      channelTitle: snippet.channelTitle,
+      published: new Date(snippet.publishedAt),
+    };
   }
 
   getThumbnailUrl(videoId: string): string {
@@ -40,8 +48,11 @@ export class YoutubeService {
 }
 
 export interface YTVideoMetadata {
-  videoId: string | undefined;
   timeStamp: number | undefined;
-  title: string | undefined;
-  tags: string[] | undefined;
+  
+  readonly videoId: string | undefined;
+  readonly title: string | undefined;
+  readonly tags: string[] | undefined;
+  readonly channelTitle: string | undefined;
+  readonly published: Date | undefined;
 }
