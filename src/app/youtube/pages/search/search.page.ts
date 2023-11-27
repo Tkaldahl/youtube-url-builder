@@ -1,8 +1,8 @@
 import { Component, WritableSignal, signal } from '@angular/core';
-import { YoutubeService } from '../../youtube.service';
+import { YoutubeService } from '../../services/youtube.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { YoutubePlayerComponent } from '../../player/youtube-player.component';
+import { YoutubePlayerComponent } from '../../components/player/youtube-player.component';
 
 @Component({
   selector: 'app-search',

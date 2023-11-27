@@ -100,6 +100,15 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
             this.ytPlayer?.playVideo();
         }, 250)
     }
+
+    getVideoIdAndTimeStamp() {
+        const videoId = this.ytPlayer?.getVideoUrl();
+        const timeStamp = this.ytPlayer?.getCurrentTime();
+
+        console.log("Video Id: " + videoId);
+        console.log("Time Stamp: " + timeStamp);
+        // return { videoId, timeStamp };
+    }
 }
 
 enum YoutubeApiState
