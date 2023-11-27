@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './youtube/search/search.page';
+import { SearchComponent } from './youtube/pages/search/search.page';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { YoutubeService } from './youtube/youtube.service';
