@@ -10,6 +10,7 @@ import { YoutubePlayerComponent } from '../../components/player/youtube-player.c
   standalone: true,
   providers: [YoutubeService],
   templateUrl: './search.page.html',
+  styleUrls: ['./search.page.scss']
 })
 export class SearchComponent {
   query = '';

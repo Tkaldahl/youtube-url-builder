@@ -1,8 +1,18 @@
-<input [(ngModel)]="query" (ngModelChange)="search()">
-<ul>
-    <li *ngFor="let video of videos">
-        <a (click)="loadVideo(video.id?.videoId)" [href]="" target="_blank">{{ video.snippet?.title }}</a>
-    </li>
-<ul>
+<div class="flex-row-container">
 
-<youtube-player-component [videoId]="videoId"></youtube-player-component>
+    <!-- SEARCH & SEARCH RESULTS -->
+    <div class="flex-column-container">
+        <!-- SEARCH -->
+        <input [(ngModel)]="query" (ngModelChange)="search()">
+
+        <!-- SEARCH RESULTS -->
+        <ul>
+            <li *ngFor="let video of videos">
+                <a (click)="loadVideo(video.id?.videoId)" target="_blank">{{ video.snippet?.title }}</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- PLAYER -->
+    <youtube-player-component [videoId]="videoId"></youtube-player-component>
+</div>
