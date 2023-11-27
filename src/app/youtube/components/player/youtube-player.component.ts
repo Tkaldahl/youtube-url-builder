@@ -1,13 +1,16 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, Renderer2, Signal, ViewChild, WritableSignal, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { YTVideoMetadata, YoutubeService } from '../../services/youtube.service';
+import { VideoListComponent } from "../video-list/video-list.component";
 
 @Component({
     selector: 'youtube-player-component',
     templateUrl: './youtube-player.component.html',
     standalone: true,
     exportAs: 'youtubePlayer',
-    imports: [FormsModule, YouTubePlayerModule],
+    providers: [YoutubeService],
+    imports: [FormsModule, YouTubePlayerModule, VideoListComponent]
 })
 export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     @Input() videoId!: Signal<string>;
@@ -16,9 +19,10 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     ytApiState: WritableSignal<YoutubeApiState> = signal(YoutubeApiState.Loading);
     ytPlayer: YT.Player | null = null;
     apiStateChecker: NodeJS.Timeout | undefined;
+    playlistSelection: WritableSignal<YTVideoMetadata> = signal({videoId: undefined, timeStamp: undefined, title: undefined, tags: undefined});
 
 
-    constructor(private renderer: Renderer2) {
+    constructor(private renderer: Renderer2, private youtubeService: YoutubeService) {
         effect(() => {
             this.videoId();
             if (this.ytPlayer) {
@@ -101,13 +105,18 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
         }, 250)
     }
 
-    getVideoIdAndTimeStamp() {
-        const videoId = this.ytPlayer?.getVideoUrl();
-        const timeStamp = this.ytPlayer?.getCurrentTime();
-
-        console.log("Video Id: " + videoId);
-        console.log("Time Stamp: " + timeStamp);
-        // return { videoId, timeStamp };
+    emitNewPlaylistSelection(): void {
+        this.ytPlayer?.pauseVideo();
+        const videoUrl = this.ytPlayer?.getVideoUrl();
+        const videoId = videoUrl?.split('v=')[1]?.split('&')[0];
+        if (videoId) {
+            const timeStamp = this.ytPlayer?.getCurrentTime();
+            this.youtubeService.getYTVideoMetadata(videoId)
+            .then((metadata) => {
+                metadata.timeStamp = timeStamp;
+                this.playlistSelection.set(metadata);
+            });
+        }
     }
 }
 

@@ -1,3 +1,5 @@
 <div #ytPlayerElement></div>
 <div #ytContainer></div>
-<button (click)="getVideoIdAndTimeStamp()">Click me</button>
+<button (click)="emitNewPlaylistSelection()">Add To Playlist</button>
+
+<video-list [newVideo]="playlistSelection"></video-list>
