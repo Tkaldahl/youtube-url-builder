@@ -16,7 +16,9 @@ export class VideoListComponent {
   constructor(private youtubeService: YoutubeService) {
     effect(() => {
         this.newVideo()
-        this.playlist.push(this.newVideo());
+        if (this.newVideo().videoId) {
+            this.playlist.push(this.newVideo());
+        }
     });
   }
 
@@ -26,5 +28,9 @@ export class VideoListComponent {
     } else {
         return "";
     }
+  }
+
+  exportPlaylist() {
+    console.log(this.playlist);
   }
 }
