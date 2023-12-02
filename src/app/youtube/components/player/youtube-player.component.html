@@ -1,5 +1,7 @@
 <div #ytPlayerElement></div>
 <div #ytContainer></div>
 <button (click)="emitNewPlaylistSelection()">Add To Playlist</button>
+<button (click)="emitNewTransitionSelection()">Add As Transition</button>
 
-<video-list [newVideo]="playlistSelection"></video-list>
+
+<video-list [newPlaylistVideo]="playlistSelection" [newTransitionVideo]="transitionVideoSelection" ></video-list>

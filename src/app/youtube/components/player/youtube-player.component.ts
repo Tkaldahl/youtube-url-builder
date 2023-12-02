@@ -27,6 +27,14 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
         channelTitle: undefined,
         published: undefined
     });
+    transitionVideoSelection: WritableSignal<YTVideoMetadata> = signal({
+        videoId: undefined,
+        timeStamp: undefined,
+        title: undefined,
+        tags: undefined,
+        channelTitle: undefined,
+        published: undefined
+    });
 
 
     constructor(private renderer: Renderer2, private youtubeService: YoutubeService) {
@@ -122,6 +130,20 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
             .then((metadata) => {
                 metadata.timeStamp = timeStamp;
                 this.playlistSelection.set(metadata);
+            });
+        }
+    }
+
+    emitNewTransitionSelection(): void {
+        this.ytPlayer?.pauseVideo();
+        const videoUrl = this.ytPlayer?.getVideoUrl();
+        const videoId = videoUrl?.split('v=')[1]?.split('&')[0];
+        if (videoId) {
+            const timeStamp = this.ytPlayer?.getCurrentTime();
+            this.youtubeService.getYTVideoMetadata(videoId)
+            .then((metadata) => {
+                metadata.timeStamp = timeStamp;
+                this.transitionVideoSelection.set(metadata);
             });
         }
     }

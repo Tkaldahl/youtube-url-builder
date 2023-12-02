@@ -10,14 +10,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './video-list.component.html',
 })
 export class VideoListComponent {
-  @Input() newVideo!: Signal<YTVideoMetadata>;
+  @Input() newPlaylistVideo!: Signal<YTVideoMetadata>;
+  @Input() newTransitionVideo!: Signal<YTVideoMetadata>;
   playlist: YTVideoMetadata[] = [];
+  transitionVideo: YTVideoMetadata | null = null;
 
   constructor(private youtubeService: YoutubeService) {
     effect(() => {
-        this.newVideo()
-        if (this.newVideo().videoId) {
-            this.playlist.push(this.newVideo());
+      this.newPlaylistVideo()
+      if (this.newPlaylistVideo().videoId) {
+          this.playlist.push(this.newPlaylistVideo());
+      }
+      this.newTransitionVideo()
+        if (this.newTransitionVideo().videoId) {
+            this.transitionVideo = this.newTransitionVideo();
         }
     });
   }
@@ -31,6 +37,36 @@ export class VideoListComponent {
   }
 
   exportPlaylist() {
-    console.log(this.playlist);
+    let video_urls: string[] = [];
+    let transition_video_url = "";
+
+    if (this.playlist.length > 0) {
+      video_urls = this.playlist.map(video => {
+        return `https://www.youtube.com/watch?v=${video.videoId}`;
+      });
+    }
+
+    if (this.transitionVideo) {
+      transition_video_url = `https://www.youtube.com/watch?v=${this.transitionVideo.videoId}`;
+    }
+
+    const process_video_req = {
+      "video_urls": video_urls,
+      "transition_video_url": transition_video_url
+    };
+
+    fetch('http://127.0.0.1:5000/process_video', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(process_video_req)
+    })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 }
