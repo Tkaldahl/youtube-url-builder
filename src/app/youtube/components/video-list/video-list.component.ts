@@ -55,11 +55,11 @@ export class VideoListComponent {
       "transition_video_url": transition_video_url
     };
 
+    const length = JSON.stringify(process_video_req).length.toString();
     fetch('http://127.0.0.1:5000/process_video', {
+ 
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      mode: 'cors', // Add this line to enable CORS
       body: JSON.stringify(process_video_req)
     })
       .then(response => {
