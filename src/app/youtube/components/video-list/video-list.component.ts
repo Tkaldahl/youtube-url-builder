@@ -50,7 +50,7 @@ export class VideoListComponent {
     }
 
     const process_video_req = {
-      "playlist_name": "test_playlist",
+      "playlist_name": "test_playlist", // TODO: get this from the user
       "video_urls": video_urls,
       "transition_video_url": transition_video_url
     };
