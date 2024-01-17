@@ -1,9 +1,9 @@
 import { Component, WritableSignal, signal } from '@angular/core';
-import { YoutubeService } from '../../services/youtube.service';
+import { YoutubeService } from '../../../youtube/services/youtube.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { YoutubePlayerComponent } from '../../components/player/youtube-player.component';
-import { YTSearchResultComponent } from '../../components/search-result/yt-search-result.component';
+import { YoutubePlayerComponent } from '../../../youtube/components/player/youtube-player.component';
+import { YTSearchResultComponent } from '../../../youtube/components/search-result/yt-search-result.component';
 import { clear } from 'console';
 
 @Component({
@@ -11,10 +11,10 @@ import { clear } from 'console';
   imports: [CommonModule, FormsModule, YoutubePlayerComponent, YTSearchResultComponent],
   standalone: true,
   providers: [YoutubeService],
-  templateUrl: './search.page.html',
-  styleUrls: ['./search.page.scss']
+  templateUrl: './playlist-create.page.html',
+  styleUrls: ['./playlist-create.page.scss']
 })
-export class SearchComponent {
+export class PlaylistCreatePage {
   query = '';
   videos: any[] = [];
   videoId: WritableSignal<string> = signal("");

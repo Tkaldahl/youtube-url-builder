@@ -11,7 +11,7 @@ import { PlaylistSearchResultComponent } from "../../components/playlist-search-
     templateUrl: './playlist-search.page.html',
     styleUrls: ['./playlist-search.page.scss']
 })
-export class PlaylistSearchComponent implements OnInit {
+export class PlaylistSearchPage implements OnInit {
     allPlaylists: PlaylistDoc[] = [];
 
     constructor() {}

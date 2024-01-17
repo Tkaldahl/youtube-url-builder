@@ -56,7 +56,7 @@ export class VideoListComponent {
     };
 
     const length = JSON.stringify(process_video_req).length.toString();
-    fetch('http://127.0.0.1:5000/process_video', {
+    fetch('http://127.0.0.1:5000/save_playlist', {
  
       method: 'POST',
       mode: 'cors', // Add this line to enable CORS

@@ -1,14 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './youtube/pages/search/search.page';
+import { PlaylistCreatePage } from './playlist/pages/create/playlist-create.page';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { YoutubeService } from './youtube/services/youtube.service';
 import { CommonModule } from '@angular/common';
-import { PlaylistSearchComponent } from './playlist/pages/search/playlist-search.page';
+import { PlaylistSearchPage } from './playlist/pages/search/playlist-search.page';
 
 export const routes: Routes = [
-    { path: 'create-playlist', component: SearchComponent },
-    { path: 'playlist-search', component: PlaylistSearchComponent },
+    { path: 'create-playlist', component: PlaylistCreatePage },
+    { path: 'playlist-search', component: PlaylistSearchPage },
 ];
 
 @NgModule({
