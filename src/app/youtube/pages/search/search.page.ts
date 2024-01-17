@@ -3,7 +3,7 @@ import { YoutubeService } from '../../services/youtube.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { YoutubePlayerComponent } from '../../components/player/youtube-player.component';
-import { YTSearchResultComponent } from '../../components/search-result/search-result.component';
+import { YTSearchResultComponent } from '../../components/search-result/yt-search-result.component';
 import { clear } from 'console';
 
 @Component({

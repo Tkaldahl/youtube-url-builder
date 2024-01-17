@@ -1,5 +1,7 @@
-<!-- <ul>
-    <li *ngFor="let playlist of allPlaylists">
-        
-    </li>
-</ul> -->
+<div class="search-results">
+    <playlist-search-result
+        *ngFor="let playlist of allPlaylists"
+        (click)="loadPlaylist(playlist)"
+        [playlistMetadata]="playlist"
+    ></playlist-search-result>
+</div>

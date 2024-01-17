@@ -1,10 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { PlaylistSearchResultComponent } from "../../components/playlist-search-result.component";
 
 @Component({
     selector: 'playlist-search',
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, PlaylistSearchResultComponent],
     standalone: true,
     providers: [],
     templateUrl: './playlist-search.page.html',
@@ -31,6 +32,10 @@ export class PlaylistSearchComponent implements OnInit {
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    loadPlaylist(playlist: PlaylistDoc): void {
+        console.log(playlist);
     }
 }
 
