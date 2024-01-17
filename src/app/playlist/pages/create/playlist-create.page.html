@@ -18,6 +18,15 @@
     
     <!-- PLAYER -->
     <div class="">
-        <youtube-player-component [videoId]="videoId"></youtube-player-component>
+        <youtube-player-component
+            [videoId]="videoId"
+            [getMetaDataReq]="getMetaDataReq"
+            (videoMetaData)="handleVideoMetaData($event)"
+        ></youtube-player-component>
     </div>
+
+    <button (click)="getVideoMetaData(false)">Add To Playlist</button>
+    <button (click)="getVideoMetaData(true)">Add As Transition</button>
+
+    <video-list [newVideo]="newVideoSelection"></video-list>
 </div>

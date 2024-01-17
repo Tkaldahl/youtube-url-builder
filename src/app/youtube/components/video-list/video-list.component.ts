@@ -10,21 +10,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './video-list.component.html',
 })
 export class VideoListComponent {
-  @Input() newPlaylistVideo!: Signal<YTVideoMetadata>;
-  @Input() newTransitionVideo!: Signal<YTVideoMetadata>;
+  @Input() newVideo!: Signal<YTVideoMetadata>;
   playlist: YTVideoMetadata[] = [];
   transitionVideo: YTVideoMetadata | null = null;
 
   constructor(private youtubeService: YoutubeService) {
     effect(() => {
-      this.newPlaylistVideo()
-      if (this.newPlaylistVideo().videoId) {
-          this.playlist.push(this.newPlaylistVideo());
-      }
-      this.newTransitionVideo()
-        if (this.newTransitionVideo().videoId) {
-            this.transitionVideo = this.newTransitionVideo();
+      this.newVideo()
+      if (this.newVideo().videoId) {
+        if (this.newVideo().isTransition) {
+          this.transitionVideo = this.newVideo();
+        } else {
+          this.playlist.push(this.newVideo());
         }
+      }
     });
   }
 
@@ -51,6 +50,7 @@ export class VideoListComponent {
     }
 
     const process_video_req = {
+      "playlist_name": "test_playlist",
       "video_urls": video_urls,
       "transition_video_url": transition_video_url
     };

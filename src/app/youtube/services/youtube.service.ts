@@ -39,6 +39,7 @@ export class YoutubeService {
       tags: snippet.tags,
       channelTitle: snippet.channelTitle,
       published: new Date(snippet.publishedAt),
+      isTransition: undefined
     };
   }
 
@@ -49,6 +50,7 @@ export class YoutubeService {
 
 export interface YTVideoMetadata {
   timeStamp: number | undefined;
+  isTransition: boolean | undefined;
   
   readonly videoId: string | undefined;
   readonly title: string | undefined;
