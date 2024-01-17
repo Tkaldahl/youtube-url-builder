@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { YoutubePlayerComponent } from '../../../youtube/components/player/youtube-player.component';
 import { YTSearchResultComponent } from '../../../youtube/components/search-result/yt-search-result.component';
-import { clear } from 'console';
 
 @Component({
   selector: 'app-search',

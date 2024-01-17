@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { PlaylistSearchPage } from './playlist/pages/search/playlist-search.page';
 
 export const routes: Routes = [
-    { path: 'create-playlist', component: PlaylistCreatePage },
+    { path: 'playlist-create', component: PlaylistCreatePage },
     { path: 'playlist-search', component: PlaylistSearchPage },
 ];
 
