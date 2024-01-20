@@ -12,7 +12,8 @@ import { PlaylistSearchResultComponent } from "../../components/playlist-search-
     styleUrls: ['./playlist-search.page.scss']
 })
 export class PlaylistSearchPage implements OnInit {
-    allPlaylists: PlaylistDoc[] = [];
+    searchText: string = '';
+    playlists: PlaylistDoc[] = [];
 
     constructor() {}
 
@@ -27,11 +28,27 @@ export class PlaylistSearchPage implements OnInit {
         }).then((response: Response) => {
             return response.json();
         }).then((playlistDocs: PlaylistDoc[]) => {
-            this.allPlaylists = playlistDocs;
-            console.log(this.allPlaylists);
+            this.playlists = playlistDocs;
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    searchPlaylists(): void {
+        const body = { search_term: this.searchText };
+
+        fetch('http://127.0.0.1:5000/search_playlists', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(body),
+        }).then((response: Response) => {
+            return response.json();
+        }).then((playlistDocs: PlaylistDoc[]) => {
+            this.playlists = playlistDocs;
+        }).catch(error => {
+            console.error(error);
+        });
+
     }
 
     loadPlaylist(playlist: PlaylistDoc): void {
