@@ -51,6 +51,22 @@ export class PlaylistSearchPage implements OnInit {
 
     }
 
+    deletePlaylist(playlist: PlaylistDoc): void {
+        const body = { playlist_id: playlist._id };
+
+        fetch('http://127.0.0.1:5000/delete_playlist', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(body),
+        }).then((response: Response) => {
+            return response.json();
+        }).then(() => {
+            this.playlists = this.playlists.filter((p: PlaylistDoc) => p._id !== playlist._id);
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
     loadPlaylist(playlist: PlaylistDoc): void {
         console.log(playlist);
     }

@@ -1,23 +1,28 @@
 .flex-row-container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-  }
-  
-  .flex-column-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .flex-1 {
-    flex: 1;
-  }
-  
-  .search-container {
-    padding: 10px;
-  }
-  
-  .search-results {
-    width: 400px;
-  }
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.search-container {
+  padding: 10px;
+}
+
+.search-results {
+  width: 400px;
+}
+
+.delete-icon {
+  min-height: 50px;
+  min-width: 50px;
+}

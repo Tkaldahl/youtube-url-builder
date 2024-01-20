@@ -5,9 +5,12 @@
 </div>
 
 <div class="search-results">
-    <playlist-search-result
-        *ngFor="let playlist of playlists"
-        (click)="loadPlaylist(playlist)"
-        [playlistMetadata]="playlist"
-    ></playlist-search-result>
+    <div *ngFor="let playlist of playlists">
+        <playlist-search-result
+            (click)="loadPlaylist(playlist)"
+            [playlistMetadata]="playlist"
+        ></playlist-search-result>
+        <!-- TODO: Implement icons properly -->
+        <i class="fas fa-trash delete-icon" (click)="deletePlaylist(playlist)"></i>
+    </div>
 </div>
