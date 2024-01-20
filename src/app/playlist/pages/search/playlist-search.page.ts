@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { PlaylistSearchResultComponent } from "../../components/playlist-search-result.component";
+import { PlaylistSearchResultComponent } from "../../components/playlist-search-result/playlist-search-result.component";
 
 @Component({
     selector: 'playlist-search',
