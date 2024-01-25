@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { PlaylistSearchResultComponent } from "../../components/playlist-search-result/playlist-search-result.component";
+import { PlaylistDoc } from "../../shared/models/playlist.models";
 
 @Component({
     selector: 'playlist-search',
@@ -70,10 +71,4 @@ export class PlaylistSearchPage implements OnInit {
     loadPlaylist(playlist: PlaylistDoc): void {
         console.log(playlist);
     }
-}
-
-export interface PlaylistDoc {
-    _id: string;
-    name: string;
-    playlist: string[];
 }
