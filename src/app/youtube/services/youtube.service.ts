@@ -1,12 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 
 export class YoutubeService {
   async searchVideos(query: string): Promise<YTVideoMetadata[]> {
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+    // TODO: Use HTTP instead of axios and remove dependancy
+    const response = await axios.get("https://www.googleapis.com/youtube/v3/search", {
       params: {
-        part: 'snippet',
+        part: "snippet",
         maxResults: 5,
-        key: 'AIzaSyAMxUBqUZNDTe3FHd7yeCk1pGsnp9uqXZQ',
+        key: "AIzaSyAMxUBqUZNDTe3FHd7yeCk1pGsnp9uqXZQ",
         q: query,
       },
     });
@@ -19,11 +20,12 @@ export class YoutubeService {
   }
 
   async getYTVideoMetadata(videoId: string): Promise<YTVideoMetadata> {
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+    // TODO: Use HTTP instead of axios and remove dependancy
+    const response = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
       params: {
-        part: 'snippet',
+        part: "snippet",
         id: videoId,
-        key: 'AIzaSyAMxUBqUZNDTe3FHd7yeCk1pGsnp9uqXZQ',
+        key: "AIzaSyAMxUBqUZNDTe3FHd7yeCk1pGsnp9uqXZQ",
       },
     });
 
