@@ -1,14 +1,13 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, Renderer2, Signal, ViewChild, WritableSignal, effect, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { YouTubePlayerModule } from '@angular/youtube-player';
-import { YoutubeService } from '../../services/youtube.service';
-import { VideoListComponent } from "../video-list/video-list.component";
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, Renderer2, Signal, ViewChild, WritableSignal, effect, signal } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { YouTubePlayerModule } from "@angular/youtube-player";
+import { YoutubeService } from "../../services/youtube.service";
 
 @Component({
-    selector: 'youtube-player-component',
-    templateUrl: './youtube-player.component.html',
+    selector: "youtube-player-component",
+    templateUrl: "./youtube-player.component.html",
     standalone: true,
-    exportAs: 'youtubePlayer',
+    exportAs: "youtubePlayer",
     providers: [YoutubeService],
     imports: [FormsModule, YouTubePlayerModule]
 })
@@ -16,8 +15,8 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     @Input() videoId!: Signal<string>;
     @Input() getMetaDataReq!: Signal<GetMetaDataRequest>;
     @Output() videoMetaData = new EventEmitter();
-    @ViewChild('ytContainer') ytContainer!: ElementRef;
-    @ViewChild('ytPlayerElement') ytPlayerElement!: ElementRef;
+    @ViewChild("ytContainer") ytContainer!: ElementRef;
+    @ViewChild("ytPlayerElement") ytPlayerElement!: ElementRef;
     ytApiState: WritableSignal<YoutubeApiState> = signal(YoutubeApiState.Loading);
     ytPlayer: YT.Player | null = null;
     apiStateChecker: NodeJS.Timeout | undefined;
@@ -33,8 +32,10 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
         });
 
         effect(() => {
-            this.getMetaDataReq();
-            this.getVideoMetaDataAndEmit()
+            let reqId = this.getMetaDataReq().requestId;
+            if (reqId) {
+                this.getVideoMetaDataAndEmit()
+            }
         });
 
         effect(() => {
@@ -56,7 +57,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
 
     private initializeYoutubeApi(): void {
         // Load the IFrame Player API code asynchronously.
-        const youtubePlayerElement = this.renderer.createElement('script');
+        const youtubePlayerElement = this.renderer.createElement("script");
         youtubePlayerElement.src = "https://www.youtube.com/player_api";
         this.renderer.appendChild(this.ytContainer.nativeElement, youtubePlayerElement);
     }
@@ -85,7 +86,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     }
 
     private ytModelsAreAvailable(): boolean {
-        return typeof(YT) != 'undefined' && typeof(YT.Player) != 'undefined';
+        return typeof(YT) != "undefined" && typeof(YT.Player) != "undefined";
     }
 
     private onYouTubePlayerAPIReady(): YT.Player | null {
@@ -93,8 +94,8 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
 
         if (this.ytModelsAreAvailable()) {
             ytPlayerInstance = new YT.Player(this.ytPlayerElement?.nativeElement, {
-                height: '360',
-                width: '640',
+                height: "360",
+                width: "640",
                 videoId: ""
             });
         } else {
@@ -114,7 +115,7 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
     private getVideoMetaDataAndEmit(): void {
         this.ytPlayer?.pauseVideo();
         const videoUrl = this.ytPlayer?.getVideoUrl();
-        const videoId = videoUrl?.split('v=')[1]?.split('&')[0];
+        const videoId = videoUrl?.split("v=")[1]?.split("&")[0];
         if (videoId) {
             const timeStamp = this.ytPlayer?.getCurrentTime();
             this.youtubeService.getYTVideoMetadata(videoId)
@@ -135,6 +136,6 @@ enum YoutubeApiState
     }
 
 export interface GetMetaDataRequest {
-    requestId: string;
+    requestId: string | null;
     isTransition: boolean;
 }
