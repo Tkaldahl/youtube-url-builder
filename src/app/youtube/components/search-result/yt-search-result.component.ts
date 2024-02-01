@@ -1,14 +1,14 @@
-import { Component, Input, Signal, effect } from '@angular/core';
-import { YTVideoMetadata, YoutubeService } from '../../services/youtube.service';
-import { CommonModule } from '@angular/common';
+import { Component, Input, Signal, effect } from "@angular/core";
+import { YTVideoMetadata, YoutubeService } from "../../services/youtube.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'yt-search-result',
+  selector: "yt-search-result",
   imports: [CommonModule],
   standalone: true,
   providers: [YoutubeService],
-  templateUrl: './yt-search-result.component.html',
-  styleUrls: ['./yt-search-result.component.scss'],
+  templateUrl: "./yt-search-result.component.html",
+  styleUrls: ["./yt-search-result.component.scss"],
 })
 export class YTSearchResultComponent {
   @Input() ytVideoMetadata!: YTVideoMetadata;
