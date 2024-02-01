@@ -28,5 +28,12 @@
     <button (click)="getVideoMetaData(false)">Add To Playlist</button>
     <button (click)="getVideoMetaData(true)">Add As Transition</button>
 
-    <video-list [newVideo]="newVideoSelection"></video-list>
+    <video-list
+     [newVideo]="newVideoSelection"
+     [exportPlaylistReq]="exportPlaylistReq"
+     (exportedPlaylist)="handleExportedPlaylist($event)"
+     ></video-list>
+
+     <button (click)="getCurrentPlaylistData()">Export Playlist</button>
+
 </div>
