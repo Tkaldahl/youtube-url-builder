@@ -1,39 +1,40 @@
 <div class="flex-row-container">
 
-    <!-- SEARCH & SEARCH RESULTS -->
-    <div class="flex-column-container search-container">
-        <!-- SEARCH -->
-        <!-- <input [(ngModel)]="query" (ngModelChange)="debounceSearch()"> -->
-        <input [(ngModel)]="query" (keyup)="debounceSearch($event)">
+  <!-- SEARCH & SEARCH RESULTS -->
+  <div class="flex-column-container search-container">
+    <!-- SEARCH -->
+    <!-- <input [(ngModel)]="query" (ngModelChange)="debounceSearch()"> -->
+    <input [(ngModel)]="query" (keyup)="debounceSearch($event)">
 
-        <!-- SEARCH RESULTS -->
-        <div class="search-results">
-            <yt-search-result
-                *ngFor="let video of videos"
-                (click)="loadVideo(video.videoId)"
-                [ytVideoMetadata]="video"
-            ></yt-search-result>
-        </div>
+    <!-- SEARCH RESULTS -->
+    <div class="search-results">
+      <yt-search-result
+        *ngFor="let video of videos"
+        (click)="loadVideo(video.videoId)"
+        [ytVideoMetadata]="video"
+      ></yt-search-result>
     </div>
-    
-    <!-- PLAYER -->
-    <div class="">
-        <youtube-player-component
-            [videoId]="videoId"
-            [getMetaDataReq]="getMetaDataReq"
-            (videoMetaData)="handleVideoMetaData($event)"
-        ></youtube-player-component>
-    </div>
+  </div>
 
-    <button (click)="getVideoMetaData(false)">Add To Playlist</button>
-    <button (click)="getVideoMetaData(true)">Add As Transition</button>
 
-    <video-list
-     [newVideo]="newVideoSelection"
-     [exportPlaylistReq]="exportPlaylistReq"
-     (exportedPlaylist)="handleExportedPlaylist($event)"
-     ></video-list>
+  <!-- PLAYER -->
+  <div class="">
+    <youtube-player-component
+      [videoId]="videoId"
+      [getMetaDataReq]="getMetaDataReq"
+      (videoMetaData)="handleVideoMetaData($event)"
+    ></youtube-player-component>
+  </div>
 
-     <button (click)="getCurrentPlaylistData()">Export Playlist</button>
+  <button (click)="getVideoMetaData(false)">Add To Playlist</button>
+  <button (click)="getVideoMetaData(true)">Add As Transition</button>
+
+  <video-list
+    [newVideo]="newVideoSelection"
+    [exportPlaylistReq]="exportPlaylistReq"
+    (exportedPlaylist)="handleExportedPlaylist($event)"
+  ></video-list>
+
+  <button (click)="getCurrentPlaylistData()">Export Playlist</button>
 
 </div>
