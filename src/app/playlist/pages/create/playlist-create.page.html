@@ -2,8 +2,9 @@
 
   <!-- SEARCH & SEARCH RESULTS -->
   <div class="flex-column-container search-container">
+    <div class="create-page-actions-container"></div>
+
     <!-- SEARCH -->
-    <!-- <input [(ngModel)]="query" (ngModelChange)="debounceSearch()"> -->
     <input [(ngModel)]="query" (keyup)="debounceSearch($event)">
 
     <!-- SEARCH RESULTS -->
@@ -17,24 +18,35 @@
   </div>
 
 
-  <!-- PLAYER -->
-  <div class="">
+  <div class="yt-player-container">
+    <!-- User Actions -->
+    <div class="create-page-actions-container">
+      <button class="medium-action-btn" (click)="getVideoMetaData(false)">Add To Playlist</button>
+      <!--  <button id="yt-player-action-add-transition" (click)="getVideoMetaData(true)">Add As Transition</button>-->
+    </div>
+
+    <!-- PLAYER -->
     <youtube-player-component
       [videoId]="videoId"
       [getMetaDataReq]="getMetaDataReq"
       (videoMetaData)="handleVideoMetaData($event)"
     ></youtube-player-component>
+
   </div>
 
-  <button (click)="getVideoMetaData(false)">Add To Playlist</button>
-  <button (click)="getVideoMetaData(true)">Add As Transition</button>
 
-  <video-list
-    [newVideo]="newVideoSelection"
-    [exportPlaylistReq]="exportPlaylistReq"
-    (exportedPlaylist)="handleExportedPlaylist($event)"
-  ></video-list>
+  <div class="playlist-container">
+    <!-- User Actions -->
+    <div class="create-page-actions-container">
+      <button class="medium-action-btn" (click)="getCurrentPlaylistData()">Export Playlist</button>
+    </div>
 
-  <button (click)="getCurrentPlaylistData()">Export Playlist</button>
+    <!-- PLAYLIST -->
+    <video-list
+      [newVideo]="newVideoSelection"
+      [exportPlaylistReq]="exportPlaylistReq"
+      (exportedPlaylist)="handleExportedPlaylist($event)"
+    ></video-list>
+  </div>
 
 </div>

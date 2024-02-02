@@ -10,6 +10,7 @@ import { SavePlaylistRequest } from "../../../playlist/shared/models/playlist.mo
   standalone: true,
   providers: [YoutubeService],
   templateUrl: "./video-list.component.html",
+  styleUrls: ["./video-list.component.scss"]
 })
 export class VideoListComponent {
   @Input() newVideo!: Signal<YTVideoMetadata>;

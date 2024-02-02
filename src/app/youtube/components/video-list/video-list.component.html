@@ -1,9 +1,11 @@
-<div *ngFor="let video of playlist">
+<div class="video-list-component-container">
+  <div *ngFor="let video of playlist">
     <img [src]="getThumbnailUrl(video)" alt="Video Thumbnail">
     <p>{{ video.title }}</p>
-</div>
+  </div>
 
-<div *ngIf="transitionVideo">
+  <div *ngIf="transitionVideo">
     <img [src]="getThumbnailUrl(transitionVideo)" alt="Video Thumbnail">
     <p>{{ transitionVideo.title }}</p>
+  </div>
 </div>

@@ -14,10 +14,39 @@
   flex: 1;
 }
 
-.search-container {
-  padding: 10px;
+.create-page-actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-bottom: 1em;
+
+  .medium-action-btn {
+    font-size: 1.5em;
+  }
 }
 
-.search-results {
-  width: 400px;
+.search-container {
+  margin: 0 2em;
+
+  .search-results {
+    width: 400px;
+  }
+}
+
+.yt-player-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2em;
+
+  .yt-player-actions-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+  }
+}
+
+.playlist-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2em;
 }
