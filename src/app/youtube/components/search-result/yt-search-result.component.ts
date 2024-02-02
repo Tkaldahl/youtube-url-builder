@@ -17,9 +17,9 @@ export class YTSearchResultComponent {
 
   getThumbnailUrl(video: YTVideoMetadata): string {
     if (video.videoId) {
-        return this.youtubeService.getThumbnailUrl(video.videoId);
+      return this.youtubeService.getThumbnailUrl(video.videoId);
     } else {
-        return "";
+      return "";
     }
   }
 }
