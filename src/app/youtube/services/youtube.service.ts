@@ -46,7 +46,7 @@ export class YoutubeService {
   }
 
   getThumbnailUrl(videoId: string): string {
-    return `https://img.youtube.com/vi/${videoId}/0.jpg`;
+    return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
   }
 }
 

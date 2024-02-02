@@ -1,10 +1,14 @@
-<div class="card">
-  <div class="card-image">
-    <img [src]="getThumbnailUrl(ytVideoMetadata)" alt="">
+<div class="yt-compact-search-result">
+  <div class="yt-thumbnail">
+    <img class="yt-thumbnail-image" [src]="getThumbnailUrl(ytVideoMetadata)">
   </div>
-  <div class="card-content">
-    <h2 class="card-title">{{ ytVideoMetadata.title }}</h2>
-    <p class="card-subtitle">{{ ytVideoMetadata.channelTitle }}</p>
-    <p class="card-subtitle">{{ ytVideoMetadata.published }}</p>
+  <div class="yt-search-results-details">
+    <h3 class="yt-search-result-header">
+      <span id="yt-video-title">{{ ytVideoMetadata.title }}</span>
+    </h3>
+    <div class="yt-search-result-secondary-details">
+      <p id="secondary-details-1">{{ ytVideoMetadata.channelTitle }}</p>
+      <p class="secondary-details-1">{{ ytVideoMetadata.published }}</p>
+    </div>
   </div>
 </div>
