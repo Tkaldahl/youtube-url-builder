@@ -1,75 +1,74 @@
 .yt-compact-search-result {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 8px;
-    font-size: 10px;
-    line-height: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+  font-size: 10px;
+  line-height: 10px;
 }
 
 .yt-thumbnail {
-    display: block;
-    position: relative;
-    flex: none;
-    margin-right: 8px;
-    height: 94px;
-    width: 168px;
-    border-radius: 8px;
+  display: block;
+  position: relative;
+  flex: none;
+  margin-right: 8px;
+  height: 94px;
+  width: 168px;
+  border-radius: 8px;
 }
 
 .yt-thumbnail-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 8px;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
 }
 
 .yt-search-result-details {
-    min-width: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    padding-right: 24px;
-    box-sizing: border-box;
-    font-family: "Roboto","Arial",sans-serif;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding-right: 24px;
+  box-sizing: border-box;
+  font-family: "Roboto","Arial",sans-serif;
 }
 
 .yt-search-result-header {
-    display: block;
-    font-size: 1.17em;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-weight: bold;
-    display: block;
+  display: block;
+  font-size: 1.17em;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
 }
 
 #yt-video-title {
-    margin: 0 0 4px 0;
-    font-size: 1.4em;
-    line-height: 1.25em;
-    font-weight: bold;
-    overflow: hidden;
-    display: block;
-    max-height: 4rem;
-    -webkit-line-clamp: 2;
-    display: box;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    white-space: normal;
+  margin: 0 0 4px 0;
+  font-size: 1.4em;
+  line-height: 1.25em;
+  font-weight: bold;
+  overflow: hidden;
+  max-height: 4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .yt-search-result-secondary-details {
-    font-size: 1.2em;
-    line-height: 1.25em;
-    font-weight: 400;
+  font-size: 1.2em;
+  line-height: 1.25em;
+  font-weight: 400;
 
-    p {
-        margin: 0;
-    }
+  p {
+    margin: 0;
+  }
 }
 
