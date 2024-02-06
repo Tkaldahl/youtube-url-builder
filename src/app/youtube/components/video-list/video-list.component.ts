@@ -63,7 +63,7 @@ export class VideoListComponent {
     }
 
     const savePlaylistReq: SavePlaylistRequest = {
-      "playlist_name": "test_playlist", // TODO: get this from the user
+      "playlist_name": null,
       "video_urls": video_urls,
       "transition_video_url": transition_video_url
     };

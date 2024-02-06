@@ -38,6 +38,10 @@ export class PlaylistCreatePage {
     requestId: null
   });
 
+  // TODO: Implement logic for the following fields
+  playlistVisibility: "Public" | "Private" = "Public";
+  playlistName: string = "Hello World Playlist!";
+  playlistImage: string = "https://i.ytimg.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg";
 
   constructor(private playlistApi: PlaylistApiService, private youtubeService: YoutubeService) {
   }
@@ -97,7 +101,10 @@ export class PlaylistCreatePage {
   }
 
   public handleExportedPlaylist(exportedPlaylist: SavePlaylistRequest) {
-    // TODO: Handle the first load. This is firing on page load.
+    if (exportedPlaylist.playlist_name === null) {
+      exportedPlaylist.playlist_name = `Playlist ${new Date().toISOString()}`;
+    }
+
     this.playlistApi.savePlaylist(exportedPlaylist).subscribe((response) => {
       console.log(response);
     });

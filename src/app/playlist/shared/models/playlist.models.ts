@@ -5,7 +5,7 @@ export interface PlaylistDoc {
 }
 
 export interface SavePlaylistRequest {
-    playlist_name: string;
+    playlist_name: string | null;
     video_urls: string[];
     transition_video_url: string;
 }
