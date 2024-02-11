@@ -80,8 +80,28 @@
       white-space: normal;
     }
   
-    .search-results {
-      width: 400px;
+    .search-results-container {
+      width: 100%;
+
+      .search-result-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 500px;
+      }
+
+      .search-result-actions-container {
+        display: flex;
+        flex-direction: column;
+        width: 120px;
+        text-align: right;
+
+        .medium-action-btn {
+          height: 32px;
+          width: 60px;
+          border-radius: 999px;
+        }
+      }
     }
   }
   

@@ -38,13 +38,23 @@
       <input class="search-input" [(ngModel)]="query" (keyup)="debounceSearch($event)">
 
       <!-- SEARCH RESULTS -->
-      <div class="search-results">
-        <yt-search-result
-          *ngFor="let video of videos"
-          (click)="loadVideo(video.videoId)"
-          [ytVideoMetadata]="video"
-        ></yt-search-result>
+      <div class="search-results-container">
+        <div *ngFor="let video of videos" class="search-result-item">
+          <yt-search-result
+            class="search-result"
+            (click)="loadVideo(video.videoId)"
+            [ytVideoMetadata]="video"
+          ></yt-search-result>
+          <div class="search-result-actions-container">
+            <div style="flex: 1;"></div>
+            <div style="justify-content: end">
+              <button class="medium-action-btn" (click)="getVideoMetaData(false)">Add</button>
+            </div>
+            <div style="flex: 1;"></div>
+          </div>
+        </div>
       </div>
+
     </div>
 
 
