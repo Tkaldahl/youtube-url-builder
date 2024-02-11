@@ -88,10 +88,14 @@
         flex-direction: row;
         justify-content: space-between;
         width: 500px;
+
+        &:hover   .search-result-actions-container {
+          display: flex !important;
+        }
       }
 
       .search-result-actions-container {
-        display: flex;
+        display: none;
         flex-direction: column;
         width: 120px;
         text-align: right;
