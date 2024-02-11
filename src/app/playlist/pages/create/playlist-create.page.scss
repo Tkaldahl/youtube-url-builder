@@ -100,6 +100,13 @@
           height: 32px;
           width: 60px;
           border-radius: 999px;
+          border: 1px solid;
+          cursor: pointer;
+          
+          &:hover {
+            transform: scale(1.04);
+            border: 1.5px solid;
+          }
         }
       }
     }
