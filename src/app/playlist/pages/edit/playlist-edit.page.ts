@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from "@angular/core";
+import {Component, OnDestroy, OnInit, signal, WritableSignal} from "@angular/core";
 import {YoutubeService, YTVideoMetadata} from "../../../youtube/services/youtube.service";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
@@ -6,19 +6,23 @@ import {GetMetaDataRequest, YoutubePlayerComponent} from "../../../youtube/compo
 import {YTSearchResultComponent} from "../../../youtube/components/search-result/yt-search-result.component";
 import {VideoListComponent} from "../../../youtube/components/video-list/video-list.component";
 import {ExportToParentRequest} from "../../shared/models/signal.models";
-import {PlaylistApiService} from "../../shared/playlist-api.service";
-import {SavePlaylistRequest} from "../../shared/models/playlist.models";
+import {PlaylistApiService} from "../../shared/services/playlist-api.service";
+import {PlaylistDoc, SavePlaylistRequest} from "../../shared/models/playlist.models";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs/internal/Subscription";
 
 
 @Component({
-  selector: "app-search",
+  selector: "playlist-edit",
   imports: [CommonModule, FormsModule, YoutubePlayerComponent, YTSearchResultComponent, VideoListComponent],
   standalone: true,
-  providers: [YoutubeService, PlaylistApiService],
-  templateUrl: "./playlist-create.page.html",
-  styleUrls: ["./playlist-create.page.scss"]
+  providers: [YoutubeService],
+  templateUrl: "./playlist-edit.page.html",
+  styleUrls: ["./playlist-edit.page.scss"]
 })
-export class PlaylistCreatePage {
+export class PlaylistEditPage implements OnInit, OnDestroy {
+  playlist: PlaylistDoc | null = null;
+  playlist$: Subscription | undefined;
   query = "";
   getMetaDataReq: WritableSignal<GetMetaDataRequest> = signal({requestId: null, isTransition: false});
   videos: any[] = [];
@@ -43,7 +47,20 @@ export class PlaylistCreatePage {
   playlistName: string = "Hello World Playlist!";
   playlistImage: string = "https://i.ytimg.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg";
 
-  constructor(private playlistApi: PlaylistApiService, private youtubeService: YoutubeService) {
+  constructor(
+    private playlistApi: PlaylistApiService,
+    private route: ActivatedRoute,
+    private youtubeService: YoutubeService
+  ) {}
+
+  ngOnInit(): void {
+    this.playlist$ = this.route.data.subscribe((playlist) => {
+      this.playlist = playlist as PlaylistDoc;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.playlist$?.unsubscribe();
   }
 
   public debounceSearch(event: Event) {

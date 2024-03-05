@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export interface PlaylistDoc {
     _id: string;
     name: string;
@@ -20,6 +22,14 @@ export interface GetAllPlaylistsRequest {
 
 export interface GetAllPlaylistsResponse {
     playlists: PlaylistDoc[];
+}
+
+export interface GetPlaylistByIdRequest {
+    playlist_id: string;
+}
+
+export interface GetPlaylistByIdResponse {
+    playlist: PlaylistDoc;
 }
 
 export interface SearchPlaylistRequest {
