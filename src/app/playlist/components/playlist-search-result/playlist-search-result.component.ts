@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { YTVideoMetadata } from "../../../youtube/services/youtube.service";
 
 @Component({
     selector: "playlist-search-result",
@@ -25,5 +26,5 @@ import { FormsModule } from "@angular/forms";
 export interface PlaylistMetadata {
   _id: string;
   name: string;
-  playlist: string[];
+  playlist: YTVideoMetadata[];
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, Signal, effect } from "@angular
 import { YTVideoMetadata, YoutubeService } from "../../services/youtube.service";
 import { CommonModule } from "@angular/common";
 import { ExportToParentRequest } from "../../../playlist/shared/models/signal.models";
-import { SavePlaylistRequest } from "../../../playlist/shared/models/playlist.models";
+import { PlaylistDoc, SavePlaylistRequest } from "../../../playlist/shared/models/playlist.models";
 
 @Component({
   selector: "video-list",
@@ -13,6 +13,7 @@ import { SavePlaylistRequest } from "../../../playlist/shared/models/playlist.mo
   styleUrls: ["./video-list.component.scss"]
 })
 export class VideoListComponent {
+  @Input() savedPlaylist!: Signal<PlaylistDoc | null>;
   @Input() newVideo!: Signal<YTVideoMetadata>;
   @Input() exportPlaylistReq!: Signal<ExportToParentRequest>;
   @Output() exportedPlaylist = new EventEmitter<SavePlaylistRequest>();
@@ -21,9 +22,9 @@ export class VideoListComponent {
 
   constructor(private youtubeService: YoutubeService) {
     effect(() => {
-      this.newVideo()
-      if (this.newVideo().videoId) {
-        if (this.newVideo().isTransition) {
+      this.newVideo();
+      if (this.newVideo()?.videoId) {
+        if (this.newVideo()?.isTransition) {
           this.transitionVideo = this.newVideo();
         } else {
           this.playlist.push(this.newVideo());
@@ -32,12 +33,18 @@ export class VideoListComponent {
     });
 
     effect(() => {
-      let reqId = this.exportPlaylistReq().requestId;
+      let reqId = this.exportPlaylistReq()?.requestId;
       if (reqId) {
         this.exportPlaylist()
       }
-  });
+    });
 
+    effect(() => {
+      if (this.savedPlaylist()?.playlist) {
+        this.playlist = this.savedPlaylist()?.playlist || [];
+        this.transitionVideo = this.savedPlaylist()?.transition_video || null;
+      }
+    });
   }
 
   getThumbnailUrl(video: YTVideoMetadata): string {
@@ -49,23 +56,10 @@ export class VideoListComponent {
   }
 
   exportPlaylist() {
-    let video_urls: string[] = [];
-    let transition_video_url = "";
-
-    if (this.playlist.length > 0) {
-      video_urls = this.playlist.map(video => {
-        return `https://www.youtube.com/watch?v=${video.videoId}`;
-      });
-    }
-
-    if (this.transitionVideo) {
-      transition_video_url = `https://www.youtube.com/watch?v=${this.transitionVideo.videoId}`;
-    }
-
     const savePlaylistReq: SavePlaylistRequest = {
       "playlist_name": null,
-      "video_urls": video_urls,
-      "transition_video_url": transition_video_url
+      "playlist": this.playlist,
+      "transition_video": this.transitionVideo
     };
 
     this.exportedPlaylist.emit(savePlaylistReq);

@@ -1,15 +1,17 @@
 import exp from "constants";
+import { YTVideoMetadata } from "../../../youtube/services/youtube.service";
 
 export interface PlaylistDoc {
     _id: string;
     name: string;
-    playlist: string[];
+    playlist: YTVideoMetadata[];
+    transition_video: YTVideoMetadata | null;
 }
 
 export interface SavePlaylistRequest {
     playlist_name: string | null;
-    video_urls: string[];
-    transition_video_url: string;
+    playlist: YTVideoMetadata[];
+    transition_video: YTVideoMetadata | null;
 }
 
 export interface SavePlaylistResponse {

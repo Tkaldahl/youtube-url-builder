@@ -7,12 +7,9 @@ import {YTSearchResultComponent} from "../../../youtube/components/search-result
 import {VideoListComponent} from "../../../youtube/components/video-list/video-list.component";
 import {ExportToParentRequest} from "../../shared/models/signal.models";
 import {PlaylistApiService} from "../../shared/services/playlist-api.service";
-import {GetPlaylistByIdResponse, PlaylistDoc, SavePlaylistRequest} from "../../shared/models/playlist.models";
+import {PlaylistDoc, SavePlaylistRequest} from "../../shared/models/playlist.models";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/internal/Subscription";
-import { map } from "rxjs/internal/operators/map";
-import { Observable } from "rxjs/internal/Observable";
-import { of } from "rxjs";
 
 
 @Component({
@@ -24,8 +21,9 @@ import { of } from "rxjs";
   styleUrls: ["./playlist-edit.page.scss"]
 })
 export class PlaylistEditPage implements OnInit, OnDestroy {
+  playlist$: Subscription | null = null;
   playlist: PlaylistDoc | null = null;
-  playlist$: Subscription | undefined;
+  playlistSignal: WritableSignal<PlaylistDoc | null> = signal(null);
   query = "";
   getMetaDataReq: WritableSignal<GetMetaDataRequest> = signal({requestId: null, isTransition: false});
   videos: any[] = [];
@@ -58,11 +56,13 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.playlist$ = this.route.data.subscribe(playlistResolver => {
       this.playlist = playlistResolver["playlistResolverRes"]?.["playlist"];
-      console.log(this.playlist);
+      this.playlistSignal.set(this.playlist);
     });
   }
 
-  ngOnDestroy(): void {  }
+  ngOnDestroy(): void { 
+    this.playlist$?.unsubscribe();
+  }
 
   public debounceSearch(event: Event) {
     if (!(event instanceof KeyboardEvent)) {

@@ -17,12 +17,14 @@
   <!-- PLAYLIST -->
   <div class="playlist-container">
     <!-- User Actions -->
-    <!-- <div class="create-page-actions-container">
+    <!-- TODO: Auto-Save each time you add a video to a playlist -->
+    <div class="create-page-actions-container">
       <button class="medium-action-btn" (click)="getCurrentPlaylistData()">Export Playlist</button>
-    </div> -->
+    </div>
 
     <!-- PLAYLIST -->
     <video-list
+      [savedPlaylist]="playlistSignal"
       [newVideo]="newVideoSelection"
       [exportPlaylistReq]="exportPlaylistReq"
       (exportedPlaylist)="handleExportedPlaylist($event)"
