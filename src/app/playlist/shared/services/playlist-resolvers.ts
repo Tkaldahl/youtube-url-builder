@@ -7,7 +7,6 @@ import { PlaylistApiService } from './playlist-api.service';
 export const playlistResolver: ResolveFn<PlaylistDoc | null> = (
   route: ActivatedRouteSnapshot,
   snapshot: RouterStateSnapshot,
-  // playlistService: PlaylistApiService = inject(PlaylistApiService)
 ): Observable<PlaylistDoc | null> => {
 
   let playlistId = route.paramMap.get('playlistId');
