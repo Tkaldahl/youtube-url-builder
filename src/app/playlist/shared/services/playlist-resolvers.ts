@@ -9,12 +9,11 @@ export const playlistResolver: ResolveFn<PlaylistDoc | null> = (
   snapshot: RouterStateSnapshot,
   // playlistService: PlaylistApiService = inject(PlaylistApiService)
 ): Observable<PlaylistDoc | null> => {
-  console.log("Resolving playlist");
+
   let playlistId = route.paramMap.get('playlistId');
   if (playlistId) {
     return inject(PlaylistApiService).getPlaylistById({playlist_id: playlistId})
       .pipe(getPlaylistByIdResponse => {
-        console.log('getPlaylistByIdResponse', getPlaylistByIdResponse);
         return getPlaylistByIdResponse;
       });
   } else {
