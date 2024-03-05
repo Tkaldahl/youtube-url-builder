@@ -7,9 +7,12 @@ import {YTSearchResultComponent} from "../../../youtube/components/search-result
 import {VideoListComponent} from "../../../youtube/components/video-list/video-list.component";
 import {ExportToParentRequest} from "../../shared/models/signal.models";
 import {PlaylistApiService} from "../../shared/services/playlist-api.service";
-import {PlaylistDoc, SavePlaylistRequest} from "../../shared/models/playlist.models";
+import {GetPlaylistByIdResponse, PlaylistDoc, SavePlaylistRequest} from "../../shared/models/playlist.models";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/internal/Subscription";
+import { map } from "rxjs/internal/operators/map";
+import { Observable } from "rxjs/internal/Observable";
+import { of } from "rxjs";
 
 
 @Component({
@@ -44,7 +47,6 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
 
   // TODO: Implement logic for the following fields
   playlistVisibility: "Public" | "Private" = "Public";
-  playlistName: string = "Hello World Playlist!";
   playlistImage: string = "https://i.ytimg.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg";
 
   constructor(
@@ -54,14 +56,13 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.playlist$ = this.route.data.subscribe((playlist) => {
-      this.playlist = playlist as PlaylistDoc;
+    this.playlist$ = this.route.data.subscribe(playlistResolver => {
+      this.playlist = playlistResolver["playlistResolverRes"]?.["playlist"];
+      console.log(this.playlist);
     });
   }
 
-  ngOnDestroy(): void {
-    this.playlist$?.unsubscribe();
-  }
+  ngOnDestroy(): void {  }
 
   public debounceSearch(event: Event) {
     if (!(event instanceof KeyboardEvent)) {

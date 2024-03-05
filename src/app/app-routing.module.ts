@@ -14,7 +14,7 @@ export const routes: Routes = [
     path: "playlist/:playlistId",
     component: PlaylistEditPage,
     resolve: {
-      playlist: playlistResolver
+      playlistResolverRes: playlistResolver
     }
   },
   {
