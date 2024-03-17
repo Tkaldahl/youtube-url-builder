@@ -1,7 +1,7 @@
 <header>
   <nav>
     <ul>
-      <li><a routerLink="/playlist/65e7a864e17c0d8484066964" routerLinkActive="active" ariaCurrentWhenActive="page">New Playlist</a></li>
+      <li><a routerLink="" (click)="$event.preventDefault(); createAndForwardToNewPlaylist()" routerLinkActive="active" ariaCurrentWhenActive="page">New Playlist</a></li>
       <li><a routerLink="/playlist-search" routerLinkActive="active" ariaCurrentWhenActive="page">Existing Playlists</a></li>
       <li><a routerLink="#" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a></li>
     </ul>
