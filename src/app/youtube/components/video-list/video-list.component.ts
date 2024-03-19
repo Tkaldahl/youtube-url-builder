@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, Signal, effect } from "@angular/core";
+import { Component, EventEmitter, Input, Output, Signal, effect, signal } from "@angular/core";
 import { YTVideoMetadata, YoutubeService } from "../../services/youtube.service";
 import { CommonModule } from "@angular/common";
 import { ExportToParentRequest } from "../../../playlist/shared/models/signal.models";
@@ -13,21 +13,23 @@ import { PlaylistDoc, SavePlaylistRequest } from "../../../playlist/shared/model
   styleUrls: ["./video-list.component.scss"]
 })
 export class VideoListComponent {
-  @Input() savedPlaylist!: Signal<PlaylistDoc | null>;
+  private PLAYLISTDOC_PLACEHOLDER: PlaylistDoc = { _id: "", name: "", playlist: [], transition_video: null };
+
+  @Input() savedPlaylist: Signal<PlaylistDoc> = signal(this.PLAYLISTDOC_PLACEHOLDER);
   @Input() newVideo!: Signal<YTVideoMetadata>;
   @Input() exportPlaylistReq!: Signal<ExportToParentRequest>;
   @Output() exportedPlaylist = new EventEmitter<SavePlaylistRequest>();
-  playlist: YTVideoMetadata[] = [];
-  transitionVideo: YTVideoMetadata | null = null;
+  playlistDoc: PlaylistDoc = this.PLAYLISTDOC_PLACEHOLDER;
+  // transitionVideo: YTVideoMetadata | null = null;
 
   constructor(private youtubeService: YoutubeService) {
     effect(() => {
       this.newVideo();
       if (this.newVideo()?.videoId) {
         if (this.newVideo()?.isTransition) {
-          this.transitionVideo = this.newVideo();
+          this.playlistDoc.transition_video = this.newVideo();
         } else {
-          this.playlist.push(this.newVideo());
+          this.playlistDoc.playlist.push(this.newVideo());
         }
       }
     });
@@ -40,9 +42,8 @@ export class VideoListComponent {
     });
 
     effect(() => {
-      if (this.savedPlaylist()?.playlist) {
-        this.playlist = this.savedPlaylist()?.playlist || [];
-        this.transitionVideo = this.savedPlaylist()?.transition_video || null;
+      if (this.savedPlaylist()) {
+        this.playlistDoc = this.savedPlaylist();
       }
     });
   }
@@ -57,9 +58,10 @@ export class VideoListComponent {
 
   exportPlaylist() {
     const savePlaylistReq: SavePlaylistRequest = {
-      "playlist_name": null,
-      "playlist": this.playlist,
-      "transition_video": this.transitionVideo
+      _id: this.playlistDoc._id,
+      playlist_name: this.playlistDoc.name,
+      playlist: this.playlistDoc.playlist,
+      transition_video: this.playlistDoc.transition_video
     };
 
     this.exportedPlaylist.emit(savePlaylistReq);

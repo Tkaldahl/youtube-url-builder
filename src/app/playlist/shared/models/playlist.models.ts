@@ -9,6 +9,7 @@ export interface PlaylistDoc {
 }
 
 export interface SavePlaylistRequest {
+    _id: string | null;
     playlist_name: string | null;
     playlist: YTVideoMetadata[];
     transition_video: YTVideoMetadata | null;

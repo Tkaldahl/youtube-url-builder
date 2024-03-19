@@ -21,9 +21,10 @@ import { Subscription } from "rxjs/internal/Subscription";
   styleUrls: ["./playlist-edit.page.scss"]
 })
 export class PlaylistEditPage implements OnInit, OnDestroy {
+  private PLAYLISTDOC_PLACEHOLDER: PlaylistDoc = { _id: "", name: "", playlist: [], transition_video: null };
   playlist$: Subscription | null = null;
-  playlist: PlaylistDoc | null = null;
-  playlistSignal: WritableSignal<PlaylistDoc | null> = signal(null);
+  playlist: PlaylistDoc = this.PLAYLISTDOC_PLACEHOLDER;
+  playlistSignal: WritableSignal<PlaylistDoc> = signal(this.PLAYLISTDOC_PLACEHOLDER);
   query = "";
   getMetaDataReq: WritableSignal<GetMetaDataRequest> = signal({requestId: null, isTransition: false});
   videos: any[] = [];

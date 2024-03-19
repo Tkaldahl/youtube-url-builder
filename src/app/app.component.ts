@@ -25,6 +25,7 @@ export class AppComponent {
 
   createAndForwardToNewPlaylist() {
     this.playlistService.savePlaylist({
+      _id: null,
       playlist_name: null,
       playlist: [],
       transition_video: null
