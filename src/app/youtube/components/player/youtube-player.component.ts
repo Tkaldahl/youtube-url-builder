@@ -15,7 +15,7 @@ import {
 } from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {YouTubePlayerModule} from "@angular/youtube-player";
-import {YoutubeService} from "../../services/youtube.service";
+import {YoutubeService, YTVideoMetadata} from "../../services/youtube.service";
 
 @Component({
   selector: "youtube-player-component",
@@ -128,17 +128,33 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
   }
 
   private getVideoMetaDataAndEmit(): void {
-    this.ytPlayer?.pauseVideo();
+    // this.ytPlayer?.pauseVideo();
     const videoUrl = this.ytPlayer?.getVideoUrl();
     const videoId = videoUrl?.split("v=")[1]?.split("&")[0];
     if (videoId) {
-      const timeStamp = this.ytPlayer?.getCurrentTime();
       this.youtubeService.getYTVideoMetadata(videoId)
         .then((metadata) => {
+          const timeStamp = /*this.ytPlayer?.getCurrentTime()*/ this.generateRandomTimeStamp(this.ytPlayer?.getDuration());
           metadata.timeStamp = timeStamp;
           metadata.isTransition = this.getMetaDataReq().isTransition;
+
           this.videoMetaData.emit(metadata);
         });
+    }
+  }
+
+  private generateRandomTimeStamp(duration: number | undefined): number {
+    if (duration) {
+      const minTime = 15;
+      let maxTime = duration - 120; // Target the most likely high point in the song with your random selection.
+      if (maxTime < 0) {
+        maxTime = duration - 60; // Fallback to the minimum duration - must leave at least 60 seconds of playtime.
+        if (maxTime < 0) { return 0; }
+      }
+      
+      return Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
+    } else {
+      return 0;
     }
   }
 }
