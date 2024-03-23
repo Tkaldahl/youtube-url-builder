@@ -3,10 +3,11 @@ import { YTVideoMetadata, YoutubeService } from "../../services/youtube.service"
 import { CommonModule } from "@angular/common";
 import { ExportToParentRequest } from "../../../playlist/shared/models/signal.models";
 import { PlaylistDoc, SavePlaylistRequest } from "../../../playlist/shared/models/playlist.models";
+import { YTSearchResultComponent } from "../search-result/yt-search-result.component";
 
 @Component({
   selector: "video-list",
-  imports: [CommonModule],
+  imports: [CommonModule, YTSearchResultComponent],
   standalone: true,
   providers: [YoutubeService],
   templateUrl: "./video-list.component.html",

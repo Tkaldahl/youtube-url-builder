@@ -1,7 +1,12 @@
 <div class="video-list-component-container">
   <div *ngFor="let video of playlistDoc.playlist">
-    <img [src]="getThumbnailUrl(video)" alt="Video Thumbnail">
-    <p>{{ video.title }}</p>
+    <!--<img [src]="getThumbnailUrl(video)" alt="Video Thumbnail">
+    <p>{{ video.title }}</p>-->
+
+    <yt-search-result
+      class="search-result"
+      [ytVideoMetadata]="video"
+    ></yt-search-result>
   </div>
 
   <div *ngIf="!!playlistDoc.transition_video">

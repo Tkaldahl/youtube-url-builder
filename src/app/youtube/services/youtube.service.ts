@@ -60,3 +60,23 @@ export interface YTVideoMetadata {
   readonly channelTitle: string | undefined;
   readonly published: Date | undefined;
 }
+
+export class YTVideoMetaDataImpl implements YTVideoMetadata {
+  timeStamp: number | undefined;
+  isTransition: boolean | undefined;
+  videoId: string | undefined;
+  title: string | undefined;
+  tags: string[] | undefined;
+  channelTitle: string | undefined;
+  published: Date | undefined;
+
+  constructor(timeStamp = undefined, isTransition = undefined, videoId = undefined, title = undefined, tags = undefined, channelTitle = undefined, published = undefined) {
+    this.timeStamp = timeStamp;
+    this.isTransition = isTransition;
+    this.videoId = videoId;
+    this.title = title;
+    this.tags = tags;
+    this.channelTitle = channelTitle;
+    this.published = published;
+  }
+}

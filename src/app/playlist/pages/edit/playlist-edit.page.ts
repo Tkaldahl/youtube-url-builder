@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, signal, WritableSignal} from "@angular/core";
-import {YoutubeService, YTVideoMetadata} from "../../../youtube/services/youtube.service";
+import {YoutubeService, YTVideoMetadata, YTVideoMetaDataImpl} from "../../../youtube/services/youtube.service";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {GetMetaDataRequest, YoutubePlayerComponent} from "../../../youtube/components/player/youtube-player.component";
@@ -105,8 +105,13 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
   }
 
   public handleVideoMetaData(videoMetaData: YTVideoMetadata) {
-    console.log(videoMetaData);
-    this.newVideoSelection.set(videoMetaData);
+    const searchResultMetaData = this.videos.filter(video => video.videoId === videoMetaData.videoId)[0];
+    let metaDataKeys = Object.keys(new YTVideoMetaDataImpl());
+    const enhancedMetaData = new YTVideoMetaDataImpl(
+      ...metaDataKeys.map(key => searchResultMetaData[key as keyof YTVideoMetadata] || videoMetaData[key as keyof YTVideoMetadata])
+    );
+
+    this.newVideoSelection.set(enhancedMetaData);
   }
 
   public getVideoMetaData(isTransition: boolean) {
