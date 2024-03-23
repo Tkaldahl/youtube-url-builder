@@ -21,6 +21,7 @@
         <video-list
           [savedPlaylist]="playlistSignal"
           [newVideo]="newVideoSelection"
+          (playVideo)="startPlaylist($event)"
           (exportedPlaylist)="handleExportedPlaylist($event)"
         ></video-list>
       </div>

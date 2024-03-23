@@ -47,6 +47,8 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
   // TODO: Implement logic for the following fields
   playlistVisibility: "Public" | "Private" = "Public";
   playlistImage: string = "https://i.ytimg.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg";
+  videoIdx: number = 0;
+  playlistTimeout: any
 
   constructor(
     private playlistApi: PlaylistApiService,
@@ -63,6 +65,7 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void { 
     this.playlist$?.unsubscribe();
+    this.cleanupPlaylistTimeout();
   }
 
   public debounceSearch(event: Event) {
@@ -102,6 +105,31 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
 
   public loadVideo(videoId: string) {
     this.videoId.set(videoId)
+  }
+
+  public startPlaylist(videoId: string | undefined) {
+    this.cleanupPlaylistTimeout();
+
+    this.videoIdx = this.playlist.playlist.findIndex(video => video.videoId === videoId);
+    if (videoId) { this.videoId.set(videoId); }
+
+    this.playlistTimeout = setTimeout(() => {
+      this.videoIdx++;
+      const nextVideoId = this.playlist.playlist[this.videoIdx]?.videoId;
+      if (nextVideoId) {
+        this.videoId.set(nextVideoId);
+        // TODO: Make this loop so that it keeps playing after the second video.
+      } else {
+        this.videoIdx = 0;
+        this.cleanupPlaylistTimeout();
+      }
+    }, 60000);
+  }
+
+  private cleanupPlaylistTimeout() {
+    if (this.playlistTimeout) {
+      clearTimeout(this.playlistTimeout);
+    }
   }
 
   public handleVideoMetaData(videoMetaData: YTVideoMetadata) {
