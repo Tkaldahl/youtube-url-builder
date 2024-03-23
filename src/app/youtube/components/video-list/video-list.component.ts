@@ -17,7 +17,6 @@ export class VideoListComponent {
 
   @Input() savedPlaylist: Signal<PlaylistDoc> = signal(this.PLAYLISTDOC_PLACEHOLDER);
   @Input() newVideo!: Signal<YTVideoMetadata>;
-  @Input() exportPlaylistReq!: Signal<ExportToParentRequest>;
   @Output() exportedPlaylist = new EventEmitter<SavePlaylistRequest>();
   playlistDoc: PlaylistDoc = this.PLAYLISTDOC_PLACEHOLDER;
   // transitionVideo: YTVideoMetadata | null = null;
@@ -31,13 +30,8 @@ export class VideoListComponent {
         } else {
           this.playlistDoc.playlist.push(this.newVideo());
         }
-      }
-    });
 
-    effect(() => {
-      let reqId = this.exportPlaylistReq()?.requestId;
-      if (reqId) {
-        this.exportPlaylist()
+        this.exportPlaylist();
       }
     });
 
