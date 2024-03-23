@@ -14,58 +14,51 @@
   <!-- PLAYLIST ACTIONS -->
   <!-- TODO: Implement playlist actions (Download, Add Collaborators, Toggle List/Compact View, 'More Options' Dropdown) -->
 
-  <!-- PLAYLIST -->
-  <div class="playlist-container">
-    <video-list
-      [savedPlaylist]="playlistSignal"
-      [newVideo]="newVideoSelection"
-      (exportedPlaylist)="handleExportedPlaylist($event)"
-    ></video-list>
-  </div>
+  <div class="content-container">
+    <div class="playlist-container flex-column-container">
+      <!-- CURRENT PLAYLIST -->
+      <div class="playlist-current-container">
+        <video-list
+          [savedPlaylist]="playlistSignal"
+          [newVideo]="newVideoSelection"
+          (exportedPlaylist)="handleExportedPlaylist($event)"
+        ></video-list>
+      </div>
 
+      <!-- SEARCH & SEARCH RESULTS -->
+      <div class="search-container flex-column-container">
+        <!-- SEARCH -->
+        <h3 class="search-action-suggestion">Let's add something to your playlist</h3>
+        <input class="search-input" [(ngModel)]="query" (keyup)="debounceSearch($event)">
 
-  <div class="playlist-add-more-container flex-row-container">
-    <!-- SEARCH & SEARCH RESULTS -->
-    <div class="search-container flex-column-container">
-      <!-- SEARCH -->
-      <h3 class="search-action-suggestion">Let's find something for your playlist</h3>
-      <input class="search-input" [(ngModel)]="query" (keyup)="debounceSearch($event)">
-
-      <!-- SEARCH RESULTS -->
-      <div class="search-results-container">
-        <div *ngFor="let video of videos" class="search-result-item">
-          <yt-search-result
-            class="search-result"
-            (click)="loadVideo(video.videoId)"
-            [ytVideoMetadata]="video"
-          ></yt-search-result>
-          <div class="search-result-actions-container">
-            <div style="flex: 1;"></div>
-            <div style="justify-content: end">
-              <button class="medium-action-btn" (click)="getVideoMetaData(false)">Add</button>
+        <!-- SEARCH RESULTS -->
+        <div class="search-results-container">
+          <div *ngFor="let video of videos" class="search-result-item">
+            <yt-search-result
+              class="search-result"
+              (click)="loadVideo(video.videoId)"
+              [ytVideoMetadata]="video"
+            ></yt-search-result>
+            <div class="search-result-actions-container">
+              <div style="flex: 1;"></div>
+              <div style="justify-content: end">
+                <button class="medium-action-btn" (click)="getVideoMetaData(false)">Add</button>
+              </div>
+              <div style="flex: 1;"></div>
             </div>
-            <div style="flex: 1;"></div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
 
-
     <div class="yt-player-container">
-      <!-- User Actions -->
-      <div class="create-page-actions-container">
-        <!--  <button class="medium-action-btn" (click)="getVideoMetaData(false)">Add To Playlist</button> -->
-        <!--  <button id="yt-player-action-add-transition" (click)="getVideoMetaData(true)">Add As Transition</button>-->
-      </div>
-
       <!-- PLAYER -->
       <youtube-player-component
         [videoId]="videoId"
         [getMetaDataReq]="getMetaDataReq"
         (videoMetaData)="handleVideoMetaData($event)"
       ></youtube-player-component>
-
     </div>
   </div>
 </div>
