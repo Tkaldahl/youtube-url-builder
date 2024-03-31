@@ -29,6 +29,7 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
   getMetaDataReq: WritableSignal<GetMetaDataRequest> = signal({requestId: null, isTransition: false});
   videos: any[] = [];
   videoId: WritableSignal<string> = signal("");
+  playerCommand: WritableSignal<"STOP" | "PLAY" | null> = signal(null);
   searchDebouncer: NodeJS.Timeout = setTimeout(() => {
   }, 0);
   newVideoSelection: WritableSignal<YTVideoMetadata> = signal({
@@ -107,20 +108,26 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
     this.videoId.set(videoId)
   }
 
-  public startPlaylist(videoId: string | undefined) {
+  public startPlaylist(videoId: string) {
     this.cleanupPlaylistTimeout();
 
-    this.videoIdx = this.playlist.playlist.findIndex(video => video.videoId === videoId);
-    if (videoId) { this.videoId.set(videoId); }
+    this.videoId.set(videoId);
 
+    this.videoIdx = this.playlist.playlist.findIndex(video => video.videoId === videoId);
+    this.queueNextVideo();
+  }
+
+  private queueNextVideo() {
     this.playlistTimeout = setTimeout(() => {
-      this.videoIdx++;
+      this.videoIdx = this.videoIdx + 1;
       const nextVideoId = this.playlist.playlist[this.videoIdx]?.videoId;
       if (nextVideoId) {
         this.videoId.set(nextVideoId);
-        // TODO: Make this loop so that it keeps playing after the second video.
+        this.queueNextVideo();
       } else {
         this.videoIdx = 0;
+        this.playerCommand.set("STOP");
+        this.playerCommand.set(null);
         this.cleanupPlaylistTimeout();
       }
     }, 60000);

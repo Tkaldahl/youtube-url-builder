@@ -29,6 +29,7 @@ import {YoutubeService, YTVideoMetadata} from "../../services/youtube.service";
 export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
   @Input() videoId!: Signal<string>;
   @Input() getMetaDataReq!: Signal<GetMetaDataRequest>;
+  @Input() playerCommand!: Signal<"STOP" | "PLAY" | null>;
   @Output() videoMetaData = new EventEmitter();
   @ViewChild("ytContainer") ytContainer!: ElementRef;
   @ViewChild("ytPlayerElement") ytPlayerElement!: ElementRef;
@@ -57,6 +58,12 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
       this.ytApiState();
       if (this.ytApiState() == YoutubeApiState.Ready) {
         this.ytPlayer = this.onYouTubePlayerAPIReady();
+      }
+    });
+
+    effect(() => {
+      if (this.playerCommand()) {
+        this.handlePlayerCommand(this.playerCommand());
       }
     });
   }
@@ -155,6 +162,14 @@ export class YoutubePlayerComponent implements AfterViewInit, OnDestroy {
       return Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
     } else {
       return 0;
+    }
+  }
+
+  handlePlayerCommand(command: "STOP" | "PLAY" | null) {
+    if (command === "STOP") {
+      this.ytPlayer?.stopVideo();
+    } else if (command == "PLAY") {
+      this.ytPlayer?.playVideo();
     }
   }
 }
