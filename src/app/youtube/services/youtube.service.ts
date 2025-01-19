@@ -2,7 +2,7 @@ import axios from "axios";
 
 export class YoutubeService {
   async searchVideos(query: string): Promise<YTVideoMetadata[]> {
-    // TODO: Use HTTP instead of axios and remove dependancy
+    // TODO: Use HTTP instead of axios and remove dependency
     const response = await axios.get("https://www.googleapis.com/youtube/v3/search", {
       params: {
         part: "snippet",
@@ -20,7 +20,7 @@ export class YoutubeService {
   }
 
   async getYTVideoMetadata(videoId: string): Promise<YTVideoMetadata> {
-    // TODO: Use HTTP instead of axios and remove dependancy
+    // TODO: Use HTTP instead of axios and remove dependency
     const response = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
       params: {
         part: "snippet",
@@ -53,7 +53,7 @@ export class YoutubeService {
 export interface YTVideoMetadata {
   timeStamp: number | undefined;
   isTransition: boolean | undefined;
-  
+
   readonly videoId: string | undefined;
   readonly title: string | undefined;
   readonly tags: string[] | undefined;
