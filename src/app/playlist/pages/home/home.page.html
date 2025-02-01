@@ -1,0 +1,33 @@
+<header class="primary-header">
+  <!-- <nav>
+    <ul>
+      <li><a routerLink="" (click)="$event.preventDefault(); createAndForwardToNewPlaylist()" routerLinkActive="active" ariaCurrentWhenActive="page">New Playlist</a></li>
+      <li><a routerLink="/playlist-search" routerLinkActive="active" ariaCurrentWhenActive="page">Existing Playlists</a></li>
+      <li><a routerLink="#" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a></li>
+    </ul>
+  </nav> -->
+  <span class="flex-spacer"></span>
+  <h1>POWER 60</h1>
+  <span class="flex-spacer"></span>
+</header>
+
+<div class="user-playlist-actions-container-wrapper">
+    <!-- This is the user Actions Container. There should be two major components in here. -->
+    
+    <!-- One for finding playlists. It has a search bar, a top playlists scroller, and a random playlist button. -->
+    <div class="user-playlist-actions-container">
+      <playlist-search-bar></playlist-search-bar>
+      
+      <div class="secondary-user-playlist-actions-container">
+        <popular-playlists-scroller class="popular-playlist-scroller"></popular-playlists-scroller>
+        <div class="playlist-randomizer"> This is the randomizer </div>
+      </div>
+    </div>
+
+    <!-- The second component is for creating a playlist. -->
+    <div class="user-playlist-actions-container">
+        Second Component
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,53 @@
+.primary-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-spacer {
+    flex: 1;
+}
+
+.user-playlist-actions-container-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-playlist-actions-container {
+    flex: 1;
+    height: 30rem;
+    margin: 5rem;
+    border: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px darkgray;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.secondary-user-playlist-actions-container {
+    width: 90%;
+    margin-top: 3rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.popular-playlist-scroller {
+    flex: 1;
+    height: 18rem;
+    margin-right: 1rem;
+    border: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px darkgray;
+}
+
+.playlist-randomizer {
+    flex: 1;
+    height: 18rem;
+    margin-left: 1rem;
+    border: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px darkgray;
+}
