@@ -1,0 +1,21 @@
+<div style="width: 100%">
+    <div class="search-bar">
+        <input
+            class="search-input"
+            type="text"
+            placeholder="Find A Playlist"
+            [(ngModel)]="searchText"
+            (keyup)="debounceSearch($event)"
+        >
+        <button class="search-button" (click)="searchPlaylists()">Search</button>
+    </div>
+
+    <div class="search-results">
+        <div *ngFor="let playlist of playlists">
+            <playlist-search-result
+                (click)="loadPlaylist(playlist)"
+                [playlistMetadata]="playlist"
+            ></playlist-search-result>
+        </div>
+    </div>
+</div>

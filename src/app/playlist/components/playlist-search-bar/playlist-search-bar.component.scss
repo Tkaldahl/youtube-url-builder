@@ -1,0 +1,28 @@
+.search-bar {
+    height: 3rem;
+    width: 90%;
+    margin-top: 3rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: row;
+
+    .search-input {
+        flex: 1;
+        padding-left: 1rem;
+        font-size: larger;
+        font-family: monospace;
+    }
+
+    .search-button {
+        font-size: larger;
+        font-family: monospace;
+        cursor: pointer;
+    }
+}
+
+.search-results {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
