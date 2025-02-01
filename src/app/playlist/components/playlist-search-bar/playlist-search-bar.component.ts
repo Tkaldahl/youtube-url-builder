@@ -110,7 +110,7 @@ import { PlaylistSearchResultComponent } from "../playlist-search-result/playlis
                 isTransition: false
                 }
             ],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
@@ -208,7 +208,7 @@ import { PlaylistSearchResultComponent } from "../playlist-search-result/playlis
                 tags: [],
                 }
             ],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
@@ -630,63 +630,63 @@ import { PlaylistSearchResultComponent } from "../playlist-search-result/playlis
                 tags: [],
                 }
             ],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0442',
             name: 'Playlist 4!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0443',
             name: 'Playlist 5!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0444',
             name: 'Playlist 6!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0447',
             name: 'Playlist 7!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0448',
             name: 'Playlist 8!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0449',
             name: 'Playlist 9!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0450',
             name: 'Playlist 10!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         },
         {
             id: '65f9fbf6e31cf09e896d0451',
             name: 'Playlist 11!',
             playlist: [],
-            coverImage: "/assets/Lynyrdskynrd.jpg",
+            coverImage: "https://upload.wikimedia.org/wikipedia/en/b/b0/Lynyrdskynyrd.jpg",
             transitionVideo: null
         }
     ]
