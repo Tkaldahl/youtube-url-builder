@@ -30,14 +30,14 @@ export class PlaylistSearchPage implements OnInit {
     }
 
     searchPlaylists(): void {
-        this.playlistApi.searchPlaylists({ search_term: this.searchText }).subscribe((response: any) => {
+        this.playlistApi.searchPlaylists({ searchTerm: this.searchText }).subscribe((response: any) => {
             this.playlists = response.playlists as PlaylistDoc[];
         });
     }
 
     deletePlaylist(playlist: PlaylistDoc): void {
-        this.playlistApi.deletePlaylist({ playlist_id: playlist._id }).subscribe(() => {
-            this.playlists = this.playlists.filter((p: PlaylistDoc) => p._id !== playlist._id);
+        this.playlistApi.deletePlaylist({ playlistId: playlist.id }).subscribe(() => {
+            this.playlists = this.playlists.filter((p: PlaylistDoc) => p.id !== playlist.id);
         });
     }
 

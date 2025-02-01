@@ -14,7 +14,7 @@ import { YTSearchResultComponent } from "../search-result/yt-search-result.compo
   styleUrls: ["./video-list.component.scss"]
 })
 export class VideoListComponent {
-  private PLAYLISTDOC_PLACEHOLDER: PlaylistDoc = { _id: "", name: "", playlist: [], transition_video: null };
+  private PLAYLISTDOC_PLACEHOLDER: PlaylistDoc = { id: "", name: "", playlist: [], coverImage: null, transitionVideo: null };
 
   @Input() savedPlaylist: Signal<PlaylistDoc> = signal(this.PLAYLISTDOC_PLACEHOLDER);
   @Input() newVideo!: Signal<YTVideoMetadata>;
@@ -28,7 +28,7 @@ export class VideoListComponent {
       this.newVideo();
       if (this.newVideo()?.videoId) {
         if (this.newVideo()?.isTransition) {
-          this.playlistDoc.transition_video = this.newVideo();
+          this.playlistDoc.transitionVideo = this.newVideo();
         } else {
           this.playlistDoc.playlist.push(this.newVideo());
         }
@@ -59,10 +59,10 @@ export class VideoListComponent {
 
   exportPlaylist() {
     const savePlaylistReq: SavePlaylistRequest = {
-      _id: this.playlistDoc._id,
-      playlist_name: this.playlistDoc.name,
+      id: this.playlistDoc.id,
+      playlistName: this.playlistDoc.name,
       playlist: this.playlistDoc.playlist,
-      transition_video: this.playlistDoc.transition_video
+      transitionVideo: this.playlistDoc.transitionVideo
     };
 
     this.exportedPlaylist.emit(savePlaylistReq);

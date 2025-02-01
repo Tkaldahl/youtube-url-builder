@@ -8,8 +8,14 @@ import { PlaylistSearchPage } from "./playlist/pages/search/playlist-search.page
 import { PlaylistApiService } from "./playlist/shared/services/playlist-api.service";
 import {FormsModule} from "@angular/forms";
 import { playlistResolver } from "./playlist/shared/services/playlist-resolvers";
+import { HomePage } from "./playlist/pages/home/home.page";
 
 export const routes: Routes = [
+  {
+    path: "",
+    component: HomePage,
+    resolve: {}
+  },
   {
     path: "playlist/:playlistId",
     component: PlaylistEditPage,

@@ -1,0 +1,52 @@
+
+<!-- This iterator should exist inside of a spinning scroller -->
+<!-- <div class="search-results">
+    <div *ngFor="let playlist of playlists">
+        <playlist-search-result
+            (click)="loadPlaylist(playlist)"
+            [playlistMetadata]="playlist"
+        ></playlist-search-result>
+    </div>
+</div> -->
+
+
+<!--
+<div class="playlist-container">
+    <div class="playlist-carousel">
+        <div
+            *ngFor="let playlist of displayedPlaylists; let index = index"
+            [class.prominent]="index - currentIndex === 0"
+            [class.visible]="getVisibility(index, currentIndex)"
+            [style.transform]="'scale(' + (index - currentIndex === 0 ? 1.2 : 0.8) + ')'"
+            [style.opacity]="getOpacity(index, currentIndex)"
+            class="playlist-item"
+        >
+            <img [src]="playlist.coverImage"/>
+            <h3>{{ playlist.name }}</h3>
+        </div>
+    </div>
+</div> -->
+
+        <!-- Okay, so I need this to carousel properly. How am I gonna do that? I need this to have a most prominant portion. Maybe I can makit a four sectors kind of think.
+         And when you scroll, we're not actually scrolling, we're loading items into and out of view.
+         That seems like it might be a little bit slow though. 
+
+         Maybe I could get the scroll calculations to work properly. What would that look like?
+         Right now, the scroll detects any scroll whatsoever and shoots things into and out of prominance. 
+
+         What I could do instead is fine tune the prominance calculation to match the scroll amount. That seems a little fragile.
+
+         I could highlight a zone, when the items are in that zone, they're magnified. It's like a magnifying glass that you slide a paper through. I think I like that the most. 
+         So I need a zone which is the magnified zone. 
+          -->
+
+<div class="playlist-carousel">
+  <div
+    class="playlist-item"
+    *ngFor="let playlist of displayedPlaylists; let i = index"
+    [ngStyle]="getCardStyle(i)"
+  >
+    <img [src]="playlist.coverImage"/>
+    <h3>{{ playlist.name }}</h3>
+  </div>
+</div>

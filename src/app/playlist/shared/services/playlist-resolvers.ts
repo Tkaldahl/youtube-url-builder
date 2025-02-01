@@ -11,7 +11,7 @@ export const playlistResolver: ResolveFn<PlaylistDoc | null> = (
 
   let playlistId = route.paramMap.get('playlistId');
   if (playlistId) {
-    return inject(PlaylistApiService).getPlaylistById({playlist_id: playlistId})
+    return inject(PlaylistApiService).getPlaylistById({playlistId: playlistId})
       .pipe(getPlaylistByIdResponse => {
         return getPlaylistByIdResponse;
       });

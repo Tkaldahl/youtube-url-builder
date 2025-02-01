@@ -24,7 +24,7 @@ import { YTVideoMetadata } from "../../../youtube/services/youtube.service";
   }  
 
 export interface PlaylistMetadata {
-  _id: string;
+  id: string;
   name: string;
   playlist: YTVideoMetadata[];
 }

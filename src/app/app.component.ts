@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterLink, RouterLinkActive, RouterOutlet, Router } from "@angular/router";
+import { RouterOutlet, Router } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { PlaylistApiService } from "./playlist/shared/services/playlist-api.service";
 
@@ -10,8 +10,6 @@ import { PlaylistApiService } from "./playlist/shared/services/playlist-api.serv
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterLink,
-    RouterLinkActive,
     RouterOutlet
   ],
   providers: [PlaylistApiService],
@@ -25,10 +23,10 @@ export class AppComponent {
 
   createAndForwardToNewPlaylist() {
     this.playlistService.savePlaylist({
-      _id: null,
-      playlist_name: null,
+      id: null,
+      playlistName: null,
       playlist: [],
-      transition_video: null
+      transitionVideo: null
     }).subscribe(savePlaylistResponse => {
       const newPlaylistId = savePlaylistResponse.playlist_id;
       this.router.navigateByUrl("/playlist/" + newPlaylistId);

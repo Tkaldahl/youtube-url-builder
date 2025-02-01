@@ -2,21 +2,22 @@ import exp from "constants";
 import { YTVideoMetadata } from "../../../youtube/services/youtube.service";
 
 export interface PlaylistDoc {
-    _id: string;
+    id: string;
     name: string;
     playlist: YTVideoMetadata[];
-    transition_video: YTVideoMetadata | null;
+    coverImage: string | null;
+    transitionVideo: YTVideoMetadata | null;
 }
 
 export interface SavePlaylistRequest {
-    _id: string | null;
-    playlist_name: string | null;
+    id: string | null;
+    playlistName: string | null;
     playlist: YTVideoMetadata[];
-    transition_video: YTVideoMetadata | null;
+    transitionVideo: YTVideoMetadata | null;
 }
 
 export interface SavePlaylistResponse {
-    playlist_id: string;
+    playlistId: string;
 }
 
 export interface GetAllPlaylistsRequest {
@@ -28,7 +29,7 @@ export interface GetAllPlaylistsResponse {
 }
 
 export interface GetPlaylistByIdRequest {
-    playlist_id: string;
+    playlistId: string;
 }
 
 export interface GetPlaylistByIdResponse {
@@ -36,7 +37,7 @@ export interface GetPlaylistByIdResponse {
 }
 
 export interface SearchPlaylistRequest {
-    search_term: string;
+    searchTerm: string;
 }
 
 export interface SearchPlaylistResponse {
@@ -44,7 +45,7 @@ export interface SearchPlaylistResponse {
 }
 
 export interface DeletePlaylistRequest {
-    playlist_id: string;
+    playlistId: string;
 }
 
 export interface DeletePlaylistResponse {

@@ -21,7 +21,7 @@ import { Subscription } from "rxjs/internal/Subscription";
   styleUrls: ["./playlist-edit.page.scss"]
 })
 export class PlaylistEditPage implements OnInit, OnDestroy {
-  private PLAYLISTDOC_PLACEHOLDER: PlaylistDoc = { _id: "", name: "", playlist: [], transition_video: null };
+  private PLAYLISTDOC_PLACEHOLDER: PlaylistDoc = { id: "", name: "", playlist: [], coverImage: null, transitionVideo: null };
   playlist$: Subscription | null = null;
   playlist: PlaylistDoc = this.PLAYLISTDOC_PLACEHOLDER;
   playlistSignal: WritableSignal<PlaylistDoc> = signal(this.PLAYLISTDOC_PLACEHOLDER);
@@ -160,8 +160,8 @@ export class PlaylistEditPage implements OnInit, OnDestroy {
   }
 
   public handleExportedPlaylist(exportedPlaylist: SavePlaylistRequest) {
-    if (exportedPlaylist.playlist_name === null) {
-      exportedPlaylist.playlist_name = `Playlist ${new Date().toISOString()}`;
+    if (exportedPlaylist.playlistName === null) {
+      exportedPlaylist.playlistName = `Playlist ${new Date().toISOString()}`;
     }
 
     this.playlistApi.savePlaylist(exportedPlaylist).subscribe((response) => {
