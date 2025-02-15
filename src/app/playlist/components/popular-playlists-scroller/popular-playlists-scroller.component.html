@@ -41,12 +41,16 @@
           -->
 
 <div class="playlist-carousel">
-  <div
+    <app-playlist-search-result-compressed
+        *ngFor="let playlist of displayedPlaylists"
+        [playlistDoc]="playlist">
+    </app-playlist-search-result-compressed>
+  <!--<div
     class="playlist-item"
     *ngFor="let playlist of displayedPlaylists; let i = index"
     [ngStyle]="getCardStyle(i)"
   >
     <img [src]="playlist.coverImage"/>
     <h3>{{ playlist.name }}</h3>
-  </div>
+  </div>-->
 </div>

@@ -1,14 +1,16 @@
 import { CommonModule } from "@angular/common";
-import { Component, HostListener, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { PlaylistApiService } from "../../shared/services/playlist-api.service";
 import { PlaylistDoc } from "../../shared/models/playlist.models";
+import { PlaylistSearchResultCompressedComponent } from "../playlist-search-result-compressed/playlist-search-result-compressed.component";
 
 @Component({
   selector: "popular-playlists-scroller",
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    PlaylistSearchResultCompressedComponent
   ],
   standalone: true,
   providers: [PlaylistApiService],
