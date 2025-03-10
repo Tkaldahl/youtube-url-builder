@@ -1,11 +1,11 @@
 .playlist-item {
-    padding: .618em; // TODO: Use the standardized padding class for this.
+    height: 8em;
     display: flex;
     flex-direction: row;
 }
 
 .playlist-image {
-    margin-right: .382em; // TODO: Use the standardized margin class for this
+    border-radius: 1em;
 }
 
 .playlist-text-container {
@@ -13,15 +13,12 @@
 }
 
 .playlist-primary-text {
-    margin: 0;
-    margin-bottom: .236em;
     text-align: left;
     font-size: x-large; // TODO: Use the standardized text class for this
 }
 
 .playlist-secondary-text {
-    height: 60%;
-    margin: 0;
+    height: 45%;
     text-align: left;
     overflow: hidden;
     // TODO: Add elipsis on shortened text.

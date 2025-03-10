@@ -33,49 +33,6 @@ export class PopularPlaylistsScrollerComponent implements OnInit {
       return this.popularPlaylists.slice(0, 10);
     }
 
-    // getVisibility(index: number, currentIndex: number): boolean {
-    //     return Math.abs(index - currentIndex) <= 1
-    // }
-
-    // getOpacity(index: number, currentIndex: number): number {
-    //     return Math.abs(index - currentIndex) <= 1 ? 1 : 0
-    // }
-
-    // handleScroll(direction: 'next' | 'prev') {
-    //   if (direction === 'next' && this.currentIndex < this.displayedPlaylists.length - 1) {
-    //     this.currentIndex++;
-    //   } else if (direction === 'prev' && this.currentIndex > 0) {
-    //     this.currentIndex--;
-    //   }
-    // }
-
-    // @HostListener('wheel', ['$event'])
-    // onScroll(event: WheelEvent) {
-    //   if (event.deltaY > 0 && this.currentIndex < this.displayedPlaylists.length - 1) {
-    //     this.currentIndex++;
-    //   } else if (event.deltaY < 0 && this.currentIndex > 0) {
-    //     this.currentIndex--;
-    //   }
-    // }
-
-    magnificationZone = { top: 100, bottom: 150 }; // Define magnification zone boundaries
-
-    getCardStyle(index: number): any {
-      const cardPosition = index * 35; // Card spacing (25px height + 10px margin)
-      const { top, bottom } = this.magnificationZone;
-  
-      if (cardPosition >= top && cardPosition <= bottom) {
-        return {
-          transform: 'scale(1.25)',
-          transition: 'transform 0.2s',
-        };
-      }
-      return {
-        transform: 'scale(1)',
-        transition: 'transform 0.2s',
-      };
-    }
-
     staticPlaylistResults: PlaylistDoc[] = [
         {
             id: '65f9fac8e31cf09e896d043f',
