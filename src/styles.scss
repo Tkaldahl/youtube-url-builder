@@ -1,2 +1,320 @@
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+//// Spacing engine  ////
+
+
+//// MARGIN ////
+/// Special class for removing all margins
+.remove-margin {
+    margin: 0;
+}
+
+/// xxs-margin ////
+.xxs-margin {
+    margin: 0.236em;
+}
+
+.xxs-margin-top {
+    margin-top: 0.236em;
+}
+
+.xxs-margin-right {
+    margin-right: 0.236em;
+}
+
+.xxs-margin-bottom {
+    margin-bottom: 0.236em;
+}
+
+.xxs-margin-left {
+    margin-left: 0.236em;
+}
+
+
+//// xs-margin ////
+.xs-margin {
+    margin: 0.382em;
+}
+
+.xs-margin-top {
+    margin-top: 0.382em;
+}
+
+.xs-margin-right {
+    margin-right: 0.382em;
+}
+
+.xs-margin-bottom {
+    margin-bottom: 0.382em;
+}
+
+.xs-margin-left {
+    margin-left: 0.382em;
+}
+
+//// s-margin ////
+.s-margin {
+    margin: 0.618em;
+}
+
+.s-margin-top {
+    margin-top: 0.618em;
+}
+
+.s-margin-right {
+    margin-right: 0.618em;
+}
+
+.s-margin-bottom {
+    margin-bottom: 0.618em;
+}
+
+.s-margin-left {
+    margin-left: 0.618em;
+}
+
+//// m-margin ////
+.m-margin {
+    margin: 1em;
+}
+
+.m-margin-top {
+    margin-top: 1em;
+}
+
+.m-margin-right {
+    margin-right: 1em;
+}
+
+.m-margin-bottom {
+    margin-bottom: 1em;
+}
+
+.m-margin-left {
+    margin-left: 1em;
+}
+
+
+//// l-margin ////
+.l-margin {
+    margin: 1.618em;
+}
+
+.l-margin-top {
+    margin-top: 1.618em;
+}
+
+.l-margin-right {
+    margin-right: 1.618em;
+}
+
+.l-margin-bottom {
+    margin-bottom: 1.618em;
+}
+
+.l-margin-left {
+    margin-left: 1.618em;
+}
+
+//// xl-margin ////
+.xl-margin {
+    margin: 2.618em;
+}
+
+.xl-margin-top {
+    margin-top: 2.618em;
+}
+
+.xl-margin-right {
+    margin-right: 2.618em;
+}
+
+.xl-margin-bottom {
+    margin-bottom: 2.618em;
+}
+
+.xl-margin-left {
+    margin-left: 2.618em;
+}
+
+//// xxl-margin ////
+.xxl-margin {
+    margin: 4.236em;
+}
+
+.xxl-margin-top {
+    margin-top: 4.236em;
+}
+
+.xxl-margin-right {
+    margin-right: 4.236em;
+}
+
+.xxl-margin-bottom {
+    margin-bottom: 4.236em;
+}
+
+.xxl-margin-left {
+    margin-left: 4.236em;
+}
+
+
+
+
+//// PADDING ////
+/// Special class for removing all padding
+.remove-padding {
+    padding: 0;
+}
+
+/// xxs-padding ////
+.xxs-padding {
+    padding: 0.236em;
+}
+
+.xxs-padding-top {
+    padding-top: 0.236em;
+}
+
+.xxs-padding-right {
+    padding-right: 0.236em;
+}
+
+.xxs-padding-bottom {
+    padding-bottom: 0.236em;
+}
+
+.xxs-padding-left {
+    padding-left: 0.236em;
+}
+
+
+//// xs-padding ////
+.xs-padding {
+    padding: 0.382em;
+}
+
+.xs-padding-top {
+    padding-top: 0.382em;
+}
+
+.xs-padding-right {
+    padding-right: 0.382em;
+}
+
+.xs-padding-bottom {
+    padding-bottom: 0.382em;
+}
+
+.xs-padding-left {
+    padding-left: 0.382em;
+}
+
+//// s-padding ////
+.s-padding {
+    padding: 0.618em;
+}
+
+.s-padding-top {
+    padding-top: 0.618em;
+}
+
+.s-padding-right {
+    padding-right: 0.618em;
+}
+
+.s-padding-bottom {
+    padding-bottom: 0.618em;
+}
+
+.s-padding-left {
+    padding-left: 0.618em;
+}
+
+//// m-padding ////
+.m-padding {
+    padding: 1em;
+}
+
+.m-padding-top {
+    padding-top: 1em;
+}
+
+.m-padding-right {
+    padding-right: 1em;
+}
+
+.m-padding-bottom {
+    padding-bottom: 1em;
+}
+
+.m-padding-left {
+    padding-left: 1em;
+}
+
+
+//// l-padding ////
+.l-padding {
+    padding: 1.618em;
+}
+
+.l-padding-top {
+    padding-top: 1.618em;
+}
+
+.l-padding-right {
+    padding-right: 1.618em;
+}
+
+.l-padding-bottom {
+    padding-bottom: 1.618em;
+}
+
+.l-padding-left {
+    padding-left: 1.618em;
+}
+
+//// xl-padding ////
+.xl-padding {
+    padding: 2.618em;
+}
+
+.xl-padding-top {
+    padding-top: 2.618em;
+}
+
+.xl-padding-right {
+    padding-right: 2.618em;
+}
+
+.xl-padding-bottom {
+    padding-bottom: 2.618em;
+}
+
+.xl-padding-left {
+    padding-left: 2.618em;
+}
+
+//// xxl-padding ////
+.xxl-padding {
+    padding: 4.236em;
+}
+
+.xxl-padding-top {
+    padding-top: 4.236em;
+}
+
+.xxl-padding-right {
+    padding-right: 4.236em;
+}
+
+.xxl-padding-bottom {
+    padding-bottom: 4.236em;
+}
+
+.xxl-padding-left {
+    padding-left: 4.236em;
+}
+
+
