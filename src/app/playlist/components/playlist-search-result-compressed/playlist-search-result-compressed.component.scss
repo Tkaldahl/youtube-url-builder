@@ -1,7 +1,20 @@
+.playlist-hover-effect-container {
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2px;
+
+    &:hover {
+        background-color: lightgray;
+        box-shadow: 2px 2px 4px darkgray;
+    }
+}
+
 .playlist-item {
     height: 8em;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
 }
 
 .playlist-image {
@@ -15,12 +28,39 @@
 .playlist-primary-text {
     text-align: left;
     font-size: x-large; // TODO: Use the standardized text class for this
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    white-space: normal;
+    overflow: hidden;
+    line-clamp: 1; // For browsers that don't support -webkit
+    
+    &::after {
+        content: '...';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: white; // Match the container background
+    }
 }
 
 .playlist-secondary-text {
-    height: 45%;
+    // TODO: font-size: Use the standardized text class
     text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    white-space: normal;
     overflow: hidden;
-    // TODO: Add elipsis on shortened text.
-    // font-size: Use the standardized text class
+    line-clamp: 4; // For browsers that don't support -webkit
+    
+    &::after {
+        content: '...';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: white; // Match the container background
+    }
 }
